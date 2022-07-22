@@ -1,0 +1,71 @@
+.carouselBanner {
+  background-color: #023a15;
+  height: 399px;
+  :global {
+    .name {
+      right: 4%;
+    }
+    .header-banner {
+      z-index: 1;
+      left: 0;
+      right: 0;
+    }
+
+    .cpn-carousel {
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      z-index: 0;
+      .search_input {
+        left: 10%;
+        z-index: 2;
+        .SearchCarousel {
+          margin-top: 50%;
+          transform: translateY(-50%);
+        }
+        .title-search {
+          max-width: 650px;
+        }
+      }
+    }
+    .background-carousel {
+      height: 680px;
+      background-repeat: no-repeat;
+      background-position: center top;
+      background-size: cover;
+    }
+  }
+}
+
+@import "_App.scss";
+@include responsive_768() {
+  .carouselBanner {
+    :global {
+      .cpn-carousel {
+        .search_input {
+          .SearchCarousel {
+            margin-top: 30%;
+          }
+          .title-search {
+            font-size: 2rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include responsive_575() {
+  .carouselBanner {
+    :global {
+      .cpn-carousel {
+        .search_input {
+          .title-search {
+            font-size: 2rem;
+          }
+        }
+      }
+    }
+  }
+}

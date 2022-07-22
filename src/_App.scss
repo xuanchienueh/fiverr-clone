@@ -1,0 +1,61 @@
+$res_575: "only screen and (max-width: 575px)";
+@mixin responsive_575() {
+  @media #{$res_575} {
+    @content;
+  }
+}
+
+$res_576: "only screen and (min-width: 576px) and (max-width: 767px)";
+@mixin responsive_576() {
+  @media #{$res_576} {
+    @content;
+  }
+}
+
+$res_768: "only screen and (min-width: 768px) and (max-width: 991px)";
+@mixin responsive_768() {
+  @media #{$res_768} {
+    @content;
+  }
+}
+
+$res_992: "only screen and (min-width: 992px) and (max-width: 1199px)";
+@mixin responsive_992() {
+  @media #{$res_992} {
+    @content;
+  }
+}
+
+$res_1200: "only screen and (min-width: 1200px)";
+@mixin responsive_1200() {
+  @media #{$res_1200} {
+    @content;
+  }
+}
+
+// @include responsive_575 {
+//   html {
+//     font-size: 1rem;
+//   }
+// }
+
+// @include responsive_576 {
+//   html {
+//     font-size: 1.2rem;
+//   }
+// }
+
+// @include responsive_768 {
+//   html {
+//     font-size: 1.4rem;
+//   }
+// }
+
+// @include responsive_992 {
+//   html {
+//     font-size: 1.6rem;
+//   }
+// }
+
+// @include responsive_1200 {
+// }

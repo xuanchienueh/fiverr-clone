@@ -1,0 +1,30 @@
+.listJob {
+  position: relative;
+  z-index: 40;
+  :global {
+    .slick-prev::before,
+    .slick-next::before {
+      background-color: transparent;
+      color: #ccc;
+    }
+    .slick-next::before {
+      content: "〉";
+    }
+    .slick-prev::before {
+      content: "〈";
+    }
+
+    .slick-prev:hover,
+    .slick-next:hover {
+      color: black;
+    }
+
+    .slick-prev.slick-disabled:before,
+    .slick-next.slick-disabled:before {
+      opacity: 0;
+    }
+    .job-name {
+      font-size: 1.2rem;
+    }
+  }
+}
