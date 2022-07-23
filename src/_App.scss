@@ -1,3 +1,5 @@
+$containerMaxWidth: 1400px;
+
 $res_575: "only screen and (max-width: 575px)";
 @mixin responsive_575() {
   @media #{$res_575} {
@@ -32,30 +34,3 @@ $res_1200: "only screen and (min-width: 1200px)";
     @content;
   }
 }
-
-// @include responsive_575 {
-//   html {
-//     font-size: 1rem;
-//   }
-// }
-
-// @include responsive_576 {
-//   html {
-//     font-size: 1.2rem;
-//   }
-// }
-
-// @include responsive_768 {
-//   html {
-//     font-size: 1.4rem;
-//   }
-// }
-
-// @include responsive_992 {
-//   html {
-//     font-size: 1.6rem;
-//   }
-// }
-
-// @include responsive_1200 {
-// }

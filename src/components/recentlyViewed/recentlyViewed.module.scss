@@ -1,0 +1,47 @@
+@import "_App";
+.rencentlyViewed {
+  max-width: $containerMaxWidth;
+  margin: 0 auto;
+  :global {
+    .slick-prev::before,
+    .slick-next::before {
+      background-color: transparent;
+      color: black;
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      font-size: 3rem;
+    }
+    .slick-next::before {
+      content: "\f138";
+    }
+    .slick-prev::before {
+      content: "\f137";
+    }
+
+    .slick-prev:hover,
+    .slick-next:hover {
+      color: black;
+    }
+    .slick-prev,
+    .slick-next {
+      color: black;
+      z-index: 2;
+    }
+    .slick-next {
+      right: 20px;
+    }
+    .slick-prev {
+      left: 0px;
+    }
+
+    .slick-prev.slick-disabled:before,
+    .slick-next.slick-disabled:before {
+      opacity: 0;
+    }
+    .itemViewed:hover {
+      .limit-line.h5 {
+        color: green;
+      }
+    }
+  }
+}
