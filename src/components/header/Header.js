@@ -1,4 +1,4 @@
-import { logoSvg } from "images/banner";
+import { logoSvg } from "images/imageSvg";
 import React, { useEffect, useState } from "react";
 import { Button, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";

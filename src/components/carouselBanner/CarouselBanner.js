@@ -1,13 +1,11 @@
 import React from "react";
 import { Carousel } from "react-bootstrap";
-import { imageBanner } from "images/banner";
 
+import { imageBanner } from "images/imageSvg";
 import styles from "./carouselBanner.module.scss";
-import Header from "components/header/Header";
 import Search from "./SearchCarousel";
 
 function CarouselBanner() {
-  console.log(imageBanner);
   return (
     <div className={styles.carouselBanner}>
       <div className="position-relative">

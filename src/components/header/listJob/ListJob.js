@@ -80,7 +80,7 @@ export default function ListJob() {
             <OverlayTrigger
               placement="bottom"
               show={showTooltip === job._id ? true : false}
-              delay={{ show: 250, hide: 400 }}
+              delay={{ show: 250, hide: 1000 }}
               overlay={(props) => renderToolTip(props, job)}
             >
               <div
@@ -88,6 +88,7 @@ export default function ListJob() {
                 className="py-2 job-name"
                 onMouseLeave={() => setShowTooltip(false)}
                 onMouseMove={() => setShowTooltip(job._id)}
+                style={{ color: showTooltip === job._id && "green" }}
               >
                 {job.name}
               </div>

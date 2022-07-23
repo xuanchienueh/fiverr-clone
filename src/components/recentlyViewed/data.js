@@ -1,6 +1,7 @@
 const link =
   "https://www.fiverr.com/homepage/logged_out/fetch_recommendations?gig_ids=54250264&type=inspired_by_recent_views";
-export const a = [
+
+export default [
   {
     gig_id: 54250264,
     category_id: 3,
