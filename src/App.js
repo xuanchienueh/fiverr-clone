@@ -1,3 +1,4 @@
+import ListJobs from "pages/listJobs/ListJobs";
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route element={<HomeTemplate />}>
           <Route path="" element={<Home />} />
+          <Route path="listjobs/:valueSearch" element={<ListJobs />} />
         </Route>
       </Routes>
     </BrowserRouter>

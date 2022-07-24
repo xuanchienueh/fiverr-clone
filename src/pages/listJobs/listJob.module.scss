@@ -1,0 +1,18 @@
+.listJobs {
+  :global {
+    .table {
+      display: none;
+    }
+    .react-bootstrap-table-pagination {
+      align-items: baseline;
+      .col-lg-6 {
+        max-width: 36%;
+      }
+      .react-bootstrap-table-pagination-list {
+        .pagination {
+          justify-content: center;
+        }
+      }
+    }
+  }
+}

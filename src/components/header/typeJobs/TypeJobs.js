@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import styles from "./listJob.module.scss";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
-import { listJobApi } from "./dulieu";
+import styles from "./typeJobs.module.scss";
+import { getListTypeMainJobAction } from "redux/manageMainWork/actionCallApi";
 
 const settings = {
   dots: false,
@@ -42,8 +43,16 @@ const settings = {
   ],
 };
 
-export default function ListJob() {
+function TypeJobs() {
+  const dispatch = useDispatch();
+  const { listMainWork } = useSelector((state) => state.mainWorkReducer);
   const [showTooltip, setShowTooltip] = useState(false);
+  // console.log(listMainWork);
+
+  useEffect(() => {
+    dispatch(getListTypeMainJobAction());
+  }, []);
+
   const renderToolTip = (props, job) => {
     let styleTooltip = {
       ...props,
@@ -73,14 +82,14 @@ export default function ListJob() {
 
   //---
   return (
-    <div className={`py-3 border-top d-none d-md-block ${styles.listJob}`}>
+    <div className={`py-3 border-top d-none d-md-block ${styles.typeJobs}`}>
       <Slider {...settings}>
-        {listJobApi.map((job) => (
+        {listMainWork?.map((job) => (
           <div className="text-center position-relative" key={job._id}>
             <OverlayTrigger
               placement="bottom"
               show={showTooltip === job._id ? true : false}
-              delay={{ show: 250, hide: 1000 }}
+              delay={{ show: 250, hide: 400 }}
               overlay={(props) => renderToolTip(props, job)}
             >
               <div
@@ -99,3 +108,5 @@ export default function ListJob() {
     </div>
   );
 }
+
+export default TypeJobs;

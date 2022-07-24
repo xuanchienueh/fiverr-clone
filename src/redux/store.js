@@ -1,8 +1,12 @@
-import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import mainWorkReducer from "./manageMainWork/mainWorkSlice";
+import manageJobReducer from "./manageJobs/manageJobSlice";
+import manageUserReducer from "./manageUser/manageUserSlice";
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    mainWorkReducer: mainWorkReducer,
+    manageJobReducer: manageJobReducer,
+    manageUserReducer: manageUserReducer,
   },
 });

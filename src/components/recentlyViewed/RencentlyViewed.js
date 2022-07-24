@@ -44,7 +44,7 @@ let settings = {
 export default function RencentlyViewed() {
   return (
     <div className={styles.rencentlyViewed}>
-      <h1 className="mb-4 ml-3">Recently Viewed & More</h1>
+      <h2 className="mb-4 ml-3">Recently Viewed & More</h2>
       <Slider {...settings}>
         {datas.map((data) => {
           return (

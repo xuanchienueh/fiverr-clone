@@ -7,7 +7,9 @@ h5,
 h6 {
   margin: 0 !important;
 }
-
+.tooltip.show {
+  opacity: 1 !important;
+}
 .tooltip > div.tooltip-inner {
   $backgroundColor: #fff;
   max-width: 1200px;
