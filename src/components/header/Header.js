@@ -3,7 +3,8 @@ import React, { useEffect, useState } from "react";
 import { Button, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import styles from "./header.module.scss";
-import ListJob from "./listJob/ListJob";
+import SearchHeader from "./searchHeader/SearchHeader";
+import TypeJobs from "./typeJobs/TypeJobs";
 
 function Header() {
   return (
@@ -12,20 +13,7 @@ function Header() {
         <Navbar.Brand href="/">{logoSvg}</Navbar.Brand>
 
         <Nav className="search d-none d-md-block">
-          <div className="input-group ">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="What service are you looking today?"
-              aria-label="What service are you looking today?"
-              aria-describedby="basic-addon2"
-            />
-            <div className="input-group-append">
-              <span role="button" className="input-group-text" id="basic-addon2">
-                <i className="fas fa-search"></i>
-              </span>
-            </div>
-          </div>
+          <SearchHeader />
         </Nav>
 
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -44,7 +32,7 @@ function Header() {
         </Navbar.Collapse>
       </Navbar>
       <div className="container">
-        <ListJob />
+        <TypeJobs />
       </div>
     </div>
   );
