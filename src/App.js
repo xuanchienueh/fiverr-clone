@@ -1,20 +1,27 @@
-import ListJobs from "pages/listJobs/ListJobs";
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import "./global.scss";
-import Home from "./pages/home/Home";
-import HomeTemplate from "./templates/homeTemplate/HomeTemplate";
+
+const Home = lazy(() => import("./pages/home/Home"));
+const HomeTemplate = lazy(() => import("./templates/homeTemplate/HomeTemplate"));
+const ListJobs = lazy(() => import("pages/listJobs/ListJobs"));
+const DetailMainJob = lazy(() => import("pages/detailMainJob/DetailMainJob"));
+const Loading = lazy(() => import("components/loading/Loading"));
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route element={<HomeTemplate />}>
-          <Route path="" element={<Home />} />
-          <Route path="listjobs/:valueSearch" element={<ListJobs />} />
-        </Route>
-      </Routes>
+      <Loading />
+      <Suspense fallback={<Loading />}>
+        <Routes>
+          <Route element={<HomeTemplate />}>
+            <Route path="" element={<Home />} />
+            <Route path="listjobs/:valueSearch" element={<ListJobs />} />
+            <Route path="detailmainjob/:idMainJob" element={<DetailMainJob />} />
+          </Route>
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 }

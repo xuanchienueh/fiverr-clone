@@ -3,7 +3,8 @@ import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getListJobAction } from "redux/manageJobs/actionCallApi";
+import { getListJobAction, getListJobBaseMainJobAction } from "redux/manageJobs/actionCallApi";
+import { getListJob } from "redux/manageJobs/manageJobSlice";
 import JobItem from "./JobItem";
 import styles from "./listJob.module.scss";
 
@@ -11,25 +12,37 @@ export default function ListJobs() {
   let id1 = useId();
   let id2 = useId();
   let id3 = useId();
+  const { valueSearch } = useParams();
   const [indexPage, setIndexPage] = useState(0);
   let [jobRender, setJobRender] = useState([]);
   const [proServices, setProServices] = useState(false);
   const [localSellers, setLocalSellers] = useState(false);
   const [onlineSellers, setOnlineSellers] = useState(false);
-  const { valueSearch } = useParams();
   const dispatch = useDispatch();
-  const { listJobs } = useSelector((state) => state.manageJobReducer);
+  const { listJobs, listJobBaseMainJob } = useSelector((state) => state.manageJobReducer);
 
   useEffect(() => {
-    dispatch(getListJobAction());
+    if (valueSearch.slice(0, valueSearch.indexOf("=", 0) + 1) === "type-job-id=") {
+      dispatch(getListJobBaseMainJobAction(valueSearch.slice(valueSearch.indexOf("=", 0) + 1)));
+      dispatch(getListJob([]));
+    } else {
+      dispatch(getListJobAction());
+    }
     if (jobRender.length === 0) {
       setJobRender(data.slice(0, 20));
     }
-  }, []);
+  }, [valueSearch]);
 
-  let data = listJobs.filter((dataItem) => {
-    return dataItem.name && dataItem.name.includes(valueSearch);
-  });
+  let data = listJobs;
+  if (listJobs.length === 0) {
+    data = listJobBaseMainJob;
+  }
+
+  if (valueSearch.slice(0, valueSearch.indexOf("=", 0) + 1) !== "type-job-id=") {
+    data = listJobs.filter((dataItem) => {
+      return dataItem.name && dataItem.name.includes(valueSearch);
+    });
+  }
 
   if (proServices === true) data = data.filter((dataItem) => dataItem.proServices === true);
   if (localSellers === true) data = data.filter((dataItem) => dataItem.localSellers === true);
@@ -54,13 +67,17 @@ export default function ListJobs() {
   if (jobRender.length === 0) {
     jobRender = data.slice(0, 20);
   }
-  console.log(data);
 
   return (
     <div className={`container max-widthContainer ${styles.listJobs}`}>
       {data.length > 0 ? (
         <>
-          <h1>Results for "{valueSearch}"</h1>
+          {valueSearch.slice(0, valueSearch.indexOf("=", 0) + 1) === "type-job-id=" ? (
+            <p></p>
+          ) : (
+            <h1>Results for "{valueSearch}"</h1>
+          )}
+
           <div className="d-flex justify-content-end mb-4">
             <div className="custom-control custom-switch">
               <input

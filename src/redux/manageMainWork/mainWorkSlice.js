@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   listMainWork: [],
+  subTypeMainWork: {},
 };
 
 export const mainWorkSlice = createSlice({
@@ -11,9 +12,12 @@ export const mainWorkSlice = createSlice({
     getListMainWork: (state, { payload }) => {
       state.listMainWork = payload;
     },
+    getsubTypeMainWork: (state, { payload }) => {
+      state.subTypeMainWork = payload;
+    },
   },
 });
 
-export const { getListMainWork } = mainWorkSlice.actions;
+export const { getListMainWork, getsubTypeMainWork } = mainWorkSlice.actions;
 
 export default mainWorkSlice.reducer;

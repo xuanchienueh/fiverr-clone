@@ -8,7 +8,12 @@ export default function JobItem({ data }) {
   return (
     <div className="px-3">
       <Card>
-        <Card.Img role="button" height={200} variant="top" src={data.image} />
+        <Card.Img
+          role="button"
+          height={200}
+          variant="top"
+          src={data.image ? data.image : "/img/img-not-found.png"}
+        />
         <Card.Body>
           <Card.Title>
             {/*      <div className="d-flex align-items-center">

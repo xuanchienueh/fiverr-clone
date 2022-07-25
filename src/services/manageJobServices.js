@@ -8,6 +8,9 @@ class manageJob extends BaseServices {
   getListJobService = () => {
     return this.get("jobs");
   };
+  getListJobBaseMainJobService = (typeJobId) => {
+    return this.get(`jobs/by-type?type=${typeJobId}&skip=0&llimit=20`);
+  };
 }
 
 export const manageJobServices = new manageJob();

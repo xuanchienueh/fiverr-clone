@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import styles from "./typeJobs.module.scss";
 import { getListTypeMainJobAction } from "redux/manageMainWork/actionCallApi";
+import { useNavigate } from "react-router-dom";
 
 const settings = {
   dots: false,
@@ -45,9 +46,9 @@ const settings = {
 
 function TypeJobs() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { listMainWork } = useSelector((state) => state.mainWorkReducer);
   const [showTooltip, setShowTooltip] = useState(false);
-  // console.log(listMainWork);
 
   useEffect(() => {
     dispatch(getListTypeMainJobAction());
@@ -97,6 +98,10 @@ function TypeJobs() {
                 className="py-2 job-name"
                 onMouseLeave={() => setShowTooltip(false)}
                 onMouseMove={() => setShowTooltip(job._id)}
+                onClick={() => {
+                  navigate(`/detailmainjob/${job._id}`);
+                  setShowTooltip(false);
+                }}
                 style={{ color: showTooltip === job._id && "green" }}
               >
                 {job.name}
