@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   listJobs: [],
+  listJobBaseMainJob: [],
 };
 
 export const manageJobSlice = createSlice({
@@ -11,8 +12,11 @@ export const manageJobSlice = createSlice({
     getListJob: (state, { payload }) => {
       state.listJobs = payload;
     },
+    getListJobBaseMainJob: (state, { payload }) => {
+      state.listJobBaseMainJob = payload;
+    },
   },
 });
 
-export const { getListJob } = manageJobSlice.actions;
+export const { getListJob, getListJobBaseMainJob } = manageJobSlice.actions;
 export default manageJobSlice.reducer;

@@ -1,6 +1,7 @@
 import { logoSvg } from "images/imageSvg";
 import React, { useEffect, useState } from "react";
 import { Button, Nav, Navbar } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 import { Link } from "react-router-dom";
 import styles from "./header.module.scss";
 import SearchHeader from "./searchHeader/SearchHeader";
@@ -10,8 +11,9 @@ function Header() {
   return (
     <div className={` ${styles.header}`}>
       <Navbar bg="light" expand="xl" variant="light">
-        <Navbar.Brand href="/">{logoSvg}</Navbar.Brand>
-
+        <LinkContainer to="/">
+          <Navbar.Brand>{logoSvg}</Navbar.Brand>
+        </LinkContainer>
         <Nav className="search d-none d-md-block">
           <SearchHeader />
         </Nav>

@@ -8,5 +8,9 @@ class mainWork extends BaseServices {
   getListTypeMainJobService = () => {
     return this.get("type-jobs");
   };
+
+  getDetailTypeMainJobService = (idMainJob) => {
+    return this.get(`type-jobs/${idMainJob}`);
+  };
 }
 export const mainWorkService = new mainWork();
