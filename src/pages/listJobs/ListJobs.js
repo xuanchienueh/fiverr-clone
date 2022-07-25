@@ -3,8 +3,13 @@ import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getListJobAction, getListJobBaseMainJobAction } from "redux/manageJobs/actionCallApi";
-import { getListJob } from "redux/manageJobs/manageJobSlice";
+
+import {
+  getListJobAction,
+  getListJobBaseMainJobAction,
+  searchJobByNameAction,
+} from "redux/manageJobs/actionCallApi";
+import { searchJobByName } from "redux/manageJobs/manageJobSlice";
 import JobItem from "./JobItem";
 import styles from "./listJob.module.scss";
 
@@ -19,29 +24,26 @@ export default function ListJobs() {
   const [localSellers, setLocalSellers] = useState(false);
   const [onlineSellers, setOnlineSellers] = useState(false);
   const dispatch = useDispatch();
-  const { listJobs, listJobBaseMainJob } = useSelector((state) => state.manageJobReducer);
+  const { resultSearchJobByName, listJobBaseMainJob } = useSelector(
+    (state) => state.manageJobReducer
+  );
 
   useEffect(() => {
     if (valueSearch.slice(0, valueSearch.indexOf("=", 0) + 1) === "type-job-id=") {
       dispatch(getListJobBaseMainJobAction(valueSearch.slice(valueSearch.indexOf("=", 0) + 1)));
-      dispatch(getListJob([]));
+      dispatch(searchJobByName([]));
     } else {
       dispatch(getListJobAction());
     }
-    if (jobRender.length === 0) {
-      setJobRender(data.slice(0, 20));
-    }
+  }, [valueSearch]);
+  useEffect(() => {
+    dispatch(searchJobByNameAction(valueSearch));
+    if (jobRender.length === 0) setJobRender(data.slice(0, 20));
   }, [valueSearch]);
 
-  let data = listJobs;
-  if (listJobs.length === 0) {
+  let data = resultSearchJobByName;
+  if (resultSearchJobByName.length === 0) {
     data = listJobBaseMainJob;
-  }
-
-  if (valueSearch.slice(0, valueSearch.indexOf("=", 0) + 1) !== "type-job-id=") {
-    data = listJobs.filter((dataItem) => {
-      return dataItem.name && dataItem.name.includes(valueSearch);
-    });
   }
 
   if (proServices === true) data = data.filter((dataItem) => dataItem.proServices === true);

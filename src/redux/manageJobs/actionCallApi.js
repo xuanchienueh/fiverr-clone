@@ -1,6 +1,6 @@
 import { hideLoading, showLoading } from "redux/loading/loadingSlice";
 import { manageJobServices } from "services/manageJobServices";
-import { getListJob, getListJobBaseMainJob } from "./manageJobSlice";
+import { getListJob, getListJobBaseMainJob, searchJobByName } from "./manageJobSlice";
 
 export const getListJobAction = () => {
   return async (dispatch, getState) => {
@@ -28,6 +28,23 @@ export const getListJobBaseMainJobAction = (typeJobId) => {
     } catch (err) {
       dispatch(hideLoading());
       console.log("getListJobBaseMainJobAction fail", err);
+    }
+  };
+};
+
+export const searchJobByNameAction = (valueSearch) => {
+  return async (dispatch, getState) => {
+    dispatch(showLoading());
+
+    try {
+      let { status, data } = await manageJobServices.searchJobByNameService(valueSearch);
+      if (status === 200) {
+        dispatch(searchJobByName(data));
+      }
+      dispatch(hideLoading());
+    } catch (err) {
+      dispatch(hideLoading());
+      console.log("searchJobByNameAction fail", err);
     }
   };
 };
