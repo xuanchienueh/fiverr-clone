@@ -1,0 +1,209 @@
+import React, { useState } from "react";
+import { Form, Input, Select, DatePicker } from "antd";
+import Swal from "sweetalert2";
+import moment from "moment";
+import { Link, Navigate } from "react-router-dom";
+
+import { manageUserServices } from "services/manageUserServices";
+import styles from "./register.module.scss";
+import { useSelector } from "react-redux";
+
+const { Option } = Select;
+
+const formItemLayout = {
+  labelCol: { xs: { span: 10 }, sm: { span: 9 } },
+  wrapperCol: { xs: { span: 10 }, sm: { span: 8 } },
+};
+
+const Register = () => {
+  const [form] = Form.useForm();
+  const { infoUserLogin } = useSelector((state) => state.manageUserReducer);
+  if (Object.entries(infoUserLogin).length > 0) {
+    return <Navigate to="/" replace={true} />;
+  }
+
+  const onFinish = (values) => {
+    values.birthday = moment().format("YYYY-MM-DD");
+    values = { ...values, type: "ADMIN" };
+
+    let result = manageUserServices.customerRegisterService(values);
+    result
+      .then((resolve) => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Register success!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      })
+      .catch((reject) => {
+        console.log(reject);
+      });
+  };
+
+  return (
+    <div className={`container ${styles.registerUser}`}>
+      <h1 className="text-center my-3 mt-lg-5">Register</h1>
+      <p className="text-center my-3 mb-lg-5 ">
+        Create your account. It's free and only takes a minute.
+      </p>
+      <Form
+        {...formItemLayout}
+        form={form}
+        name="register"
+        onFinish={onFinish}
+        initialValues={{}}
+        scrollToFirstError
+        size="large"
+      >
+        <Form.Item
+          name="email"
+          label="E-mail"
+          rules={[
+            {
+              type: "email",
+              message: "The input is not valid E-mail!",
+            },
+            {
+              required: true,
+              message: "Please input your E-mail!",
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+
+        <Form.Item
+          name="password"
+          label="Password"
+          rules={[{ required: true, message: "Please input your password!" }]}
+          hasFeedback
+        >
+          <Input.Password />
+        </Form.Item>
+
+        <Form.Item
+          name="confirm"
+          label="Confirm Password"
+          dependencies={["password"]}
+          hasFeedback
+          rules={[
+            {
+              required: true,
+              message: "Please confirm your password!",
+            },
+            ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (!value || getFieldValue("password") === value) {
+                  return Promise.resolve();
+                }
+
+                return Promise.reject(
+                  new Error("The two passwords that you entered do not match!")
+                );
+              },
+            }),
+          ]}
+        >
+          <Input.Password />
+        </Form.Item>
+
+        <Form.Item
+          name="name"
+          label="Name"
+          // tooltip="What do you want others to call you?"
+          rules={[
+            {
+              required: true,
+              message: "Please input your name!",
+              whitespace: true,
+            },
+            {
+              message: "Your name is invalid!",
+              type: "string",
+              pattern:
+                /^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ" + "ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ" + "ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]+$/,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+
+        <Form.Item
+          name="phone"
+          label="Phone Number"
+          rules={[
+            { required: true, message: "Please input your phone number!" },
+            {
+              message: "Your phone number is invalid!",
+              pattern: /^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/,
+            },
+          ]}
+        >
+          <Input style={{ width: "100%" }} />
+        </Form.Item>
+
+        <Form.Item
+          name="gender"
+          label="Gender"
+          rules={[
+            {
+              required: true,
+              message: "Please select gender!",
+            },
+          ]}
+        >
+          <Select placeholder="select your gender">
+            <Option value={true}>Male</Option>
+            <Option value={false}>Female</Option>
+          </Select>
+        </Form.Item>
+
+        <Form.Item
+          label="Birthday"
+          name="birthday"
+          rules={[{ required: true, message: "Please select your birthday!" }]}
+        >
+          <DatePicker format={"DD/MM/YYYY"} />
+        </Form.Item>
+
+        <Form.Item
+          name="skill"
+          label="Skill"
+          rules={[{ required: true, message: "Please select your skills!" }]}
+        >
+          <Select mode="multiple" placeholder="select your skills">
+            <Option value="LoL">LoL</Option>
+            <Option value="WEB">WEB</Option>
+            <Option value="DESIGN">DESIGN</Option>
+          </Select>
+        </Form.Item>
+        <Form.Item
+          name="certification"
+          label="Certification"
+          rules={[{ required: true, message: "Please select your certification!" }]}
+        >
+          <Select mode="multiple" placeholder="select your certification">
+            <Option value="DIB">DIB</Option>
+            <Option value="PYNOW">PYNOW</Option>
+          </Select>
+        </Form.Item>
+
+        <div className="d-flex justify-content-center">
+          <button type="submit" className="btn btn-outline-success">
+            Register
+          </button>
+        </div>
+      </Form>
+      <div className="text-center my-4">
+        Already have an account?{" "}
+        <Link className="h6" to="/login">
+          Log in
+        </Link>
+      </div>
+    </div>
+  );
+};
+
+export default Register;

@@ -8,6 +8,14 @@ class users extends BaseServices {
   getListUserService = () => {
     return this.get("users");
   };
+
+  customerRegisterService = (infoRegister) => {
+    return this.post("auth/signup", infoRegister);
+  };
+
+  memberLoginService = (infoLogin) => {
+    return this.post(`auth/signin`, infoLogin);
+  };
 }
 
 export const manageUserServices = new users();

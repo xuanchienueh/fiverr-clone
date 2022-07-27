@@ -8,6 +8,8 @@ const HomeTemplate = lazy(() => import("./templates/homeTemplate/HomeTemplate"))
 const ListJobs = lazy(() => import("pages/listJobs/ListJobs"));
 const DetailMainJob = lazy(() => import("pages/detailMainJob/DetailMainJob"));
 const Loading = lazy(() => import("components/loading/Loading"));
+const Register = lazy(() => import("pages/register/Register"));
+const Login = lazy(() => import("pages/login/Login"));
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
             <Route path="" element={<Home />} />
             <Route path="listjobs/:valueSearch" element={<ListJobs />} />
             <Route path="detailmainjob/:idMainJob" element={<DetailMainJob />} />
+            <Route path="login" element={<Login />} />
+            <Route path="register" element={<Register />} />
           </Route>
         </Routes>
       </Suspense>
