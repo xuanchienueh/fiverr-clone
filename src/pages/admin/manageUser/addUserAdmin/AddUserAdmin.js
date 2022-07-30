@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { Form, Input, Select, DatePicker } from "antd";
 import Swal from "sweetalert2";
 import moment from "moment";
-import { Link, Navigate } from "react-router-dom";
 
 import { manageUserServices } from "services/manageUserServices";
-import styles from "./register.module.scss";
-import { useSelector } from "react-redux";
+import styles from "./addUserAdmin.module.scss";
 
 const { Option } = Select;
 
@@ -17,18 +15,15 @@ const formItemLayout = {
 
 const Register = () => {
   const [form] = Form.useForm();
-  const { infoUserLogin } = useSelector((state) => state.manageUserReducer);
-  if (Object.entries(infoUserLogin).length > 0) {
-    return <Navigate to="/" replace={true} />;
-  }
 
   const onFinish = (values) => {
     values.birthday = moment().format("YYYY-MM-DD");
-    values = { ...values, type: "ADMIN" };
-
-    let result = manageUserServices.customerRegisterService(values);
-    result
-      .then((resolve) => {
+    values = { ...values, role: "ADMIN" };
+    console.log(values);
+    let promise = manageUserServices.createAdminUserService(values);
+    promise
+      .then((result) => {
+        console.log(result);
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -37,21 +32,19 @@ const Register = () => {
           timer: 1500,
         });
       })
-      .catch((reject) => {
-        console.log(reject);
+      .catch((err) => {
+        console.log("create admin user fail", err);
       });
   };
 
   return (
     <div className={`container ${styles.registerUser}`}>
-      <h1 className="text-center my-3 mt-lg-5">Register</h1>
-      <p className="text-center my-3 mb-lg-5 ">
-        Create your account. It's free and only takes a minute.
-      </p>
+      <h1 className="text-center my-3 mt-lg-5">Create Admin Account</h1>
+      <br />
       <Form
         {...formItemLayout}
         form={form}
-        name="register"
+        name="create-acount-admin"
         onFinish={onFinish}
         initialValues={{}}
         scrollToFirstError
@@ -112,7 +105,6 @@ const Register = () => {
         <Form.Item
           name="name"
           label="Name"
-          // tooltip="What do you want others to call you?"
           rules={[
             {
               required: true,
@@ -191,17 +183,18 @@ const Register = () => {
         </Form.Item>
 
         <div className="d-flex justify-content-center">
-          <button type="submit" className="btn btn-outline-success">
+          <button type="submit" className="btn btn-outline-success mb-5">
             Register
+          </button>
+          <button
+            onClick={() => form.resetFields()}
+            type="button"
+            className="btn btn-outline-danger ml-5 mb-5"
+          >
+            Reset form
           </button>
         </div>
       </Form>
-      <div className="text-center my-4">
-        Already have an account?{" "}
-        <Link className="h6" to="/login">
-          Log in
-        </Link>
-      </div>
     </div>
   );
 };

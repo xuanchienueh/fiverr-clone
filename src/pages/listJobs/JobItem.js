@@ -4,9 +4,8 @@ import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export default function JobItem({ data }) {
-  // console.log(data);
   return (
-    <div className="px-3">
+    <div className="px-3" onClick={() => console.log(data)}>
       <Card>
         <Card.Img
           role="button"

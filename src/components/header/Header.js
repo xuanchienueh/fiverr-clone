@@ -1,15 +1,19 @@
+import TypeJobs from "./typeJobs/TypeJobs";
 import React, { useEffect, useState } from "react";
 import { Button, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { useSelector } from "react-redux";
-
 import { LinkContainer } from "react-router-bootstrap";
+
 import styles from "./header.module.scss";
 import SearchHeader from "./searchHeader/SearchHeader";
 import { logoSvg } from "images/imageSvg";
-import TypeJobs from "./typeJobs/TypeJobs";
 
 function Header() {
   const { infoUserLogin } = useSelector((state) => state.manageUserReducer);
+  let nameUser = infoUserLogin?.user?.name;
+  nameUser = nameUser && nameUser.slice(0, nameUser.indexOf(" "));
+  console.log(nameUser);
+
   return (
     <div className={` ${styles.header}`}>
       <Navbar bg="light" expand="xl" variant="light">
@@ -30,8 +34,10 @@ function Header() {
             <Nav.Link href="#">Become a Seller</Nav.Link>
 
             {infoUserLogin.token ? (
-              <NavDropdown title={`Welcome ${infoUserLogin?.user?.name}`} id="dropdown-account">
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+              <NavDropdown title={`Welcome ${nameUser}`} id="dropdown-account">
+                <LinkContainer to="/profile">
+                  <NavDropdown.Item>Profile</NavDropdown.Item>
+                </LinkContainer>
                 <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
                 <NavDropdown.Divider />
@@ -41,7 +47,7 @@ function Header() {
                     window.location.reload();
                   }}
                 >
-                  Sign out
+                  Logout
                 </NavDropdown.Item>
               </NavDropdown>
             ) : null}

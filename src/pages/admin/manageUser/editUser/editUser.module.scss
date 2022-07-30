@@ -1,0 +1,13 @@
+.uploadInfoUser {
+  :global {
+    .ant-col-sm-8 {
+      max-width: 100%;
+    }
+    .ant-col-xs-10 {
+      max-width: 100%;
+    }
+    .ant-form-item-label {
+      text-align: left;
+    }
+  }
+}

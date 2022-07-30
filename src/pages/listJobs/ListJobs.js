@@ -10,6 +10,8 @@ import {
   searchJobByNameAction,
 } from "redux/manageJobs/actionCallApi";
 import { searchJobByName } from "redux/manageJobs/manageJobSlice";
+import { manageJobServices } from "services/manageJobServices";
+import { manageUserServices } from "services/manageUserServices";
 import JobItem from "./JobItem";
 import styles from "./listJob.module.scss";
 
@@ -27,6 +29,37 @@ export default function ListJobs() {
   const { resultSearchJobByName, listJobBaseMainJob } = useSelector(
     (state) => state.manageJobReducer
   );
+
+  /*   const [allUserCreated, setAllUserCreated] = useState([]);
+  const [listUser, setListUser] = useState([]);
+
+  useEffect(() => {
+    manageJobServices.getListJobService().then((resolve) => {
+      let i = 0;
+      const allJobId = [];
+      while (i < resolve.data.length) {
+        allJobId.push(resolve.data[i].userCreated);
+        i++;
+      }
+      setAllUserCreated(Array.from(new Set(allJobId)));
+    });
+  }, []);
+
+  useEffect(() => {
+    manageUserServices.getListUserService().then((resolve) => {
+      setListUser(resolve.data);
+    });
+  }, []);
+  let countUser = [];
+  for (let i = 0; i < allUserCreated.length; i++) {
+    for (let j = 0; j < listUser.length; j++) {
+      if (allUserCreated[i] === listUser[j]._id) {
+        countUser.push(allUserCreated[i]);
+        break;
+      }
+    }
+  }
+  console.log(countUser); */
 
   useEffect(() => {
     if (valueSearch.slice(0, valueSearch.indexOf("=", 0) + 1) === "type-job-id=") {

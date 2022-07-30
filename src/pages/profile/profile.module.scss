@@ -1,0 +1,22 @@
+.avatar {
+  position: relative;
+  margin-top: 2rem;
+  :global {
+    .upload-img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: all 0.5s;
+      .bg-svg {
+        background-color: #373737;
+        width: 172px;
+        height: 172px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+      }
+    }
+  }
+}
