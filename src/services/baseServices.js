@@ -1,5 +1,7 @@
 import axios from "axios";
 import { DOMAIN_API, TOKEN, tokenByClass } from "utils/setting/config";
+const tokenAdmin =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmUxZDBhYjRiNGMyNzAwMWM4MTFiMWUiLCJlbWFpbCI6ImNoaWVudWVoQGdtYWlsLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1ODk3MTM5N30.7v7DGyufVThCYI6A3zdw77vel3w8ej7aC1mqNym45-I";
 
 export class BaseServices {
   post = (url, model) => {
@@ -8,7 +10,7 @@ export class BaseServices {
       url: `${DOMAIN_API}/${url}`,
       data: model,
       headers: {
-        token: `Bearer ${localStorage.getItem(TOKEN)}`,
+        token: `${localStorage.getItem(TOKEN)}`,
         tokenByClass,
       },
     });
@@ -19,9 +21,8 @@ export class BaseServices {
       method: "GET",
       url: `${DOMAIN_API}/${url}`,
       headers: {
-        token: `Bearer ${localStorage.getItem(TOKEN)}`,
-        tokenByClass:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCAyNSIsIkhldEhhblN0cmluZyI6IjE2LzEyLzIwMjIiLCJIZXRIYW5UaW1lIjoiMTY3MTE0ODgwMDAwMCIsIm5iZiI6MTY0MTU3NDgwMCwiZXhwIjoxNjcxMjk2NDAwfQ.cB7cdIfS0TKI1Yx_WRS-tEOt5K5yf3QJCot63SYEOHo",
+        token: `${localStorage.getItem(TOKEN)}`,
+        tokenByClass,
       },
     });
   };
@@ -31,7 +32,7 @@ export class BaseServices {
       method: "DELETE",
       url: `${DOMAIN_API}/${url}`,
       headers: {
-        token: `Bearer ${localStorage.getItem(TOKEN)}`,
+        token: `${localStorage.getItem(TOKEN)}`,
         tokenByClass,
       },
     });
@@ -43,7 +44,31 @@ export class BaseServices {
       url: `${DOMAIN_API}/${url}`,
       data: model,
       headers: {
-        token: `Bearer ${localStorage.getItem(TOKEN)}`,
+        token: `${localStorage.getItem(TOKEN)}`,
+        tokenByClass,
+      },
+    });
+  };
+
+  putTokenAdmin = (url, model) => {
+    return axios({
+      method: "PUT",
+      url: `${DOMAIN_API}/${url}`,
+      data: model,
+      headers: {
+        token: `${tokenAdmin}`,
+        tokenByClass,
+      },
+    });
+  };
+
+  postTokenAdmin = (url, model) => {
+    return axios({
+      method: "POST",
+      url: `${DOMAIN_API}/${url}`,
+      data: model,
+      headers: {
+        token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmRmODFkODRiNGMyNzAwMWM4MTBjMmIiLCJlbWFpbCI6ImdyZXRAZ21haWwuY29tIiwicm9sZSI6IkNMSUVOVCIsImlhdCI6MTY1ODk3NzA2OX0.PfXaPzPSAt28Bq0dZUu9SvEaGvRuVs_OP9_qX2QC1go`,
         tokenByClass,
       },
     });

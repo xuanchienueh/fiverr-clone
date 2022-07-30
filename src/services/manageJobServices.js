@@ -5,18 +5,12 @@ class manageJob extends BaseServices {
     super();
   }
 
-  /* api 20 */
-  getListJobService = () => {
-    return this.get("jobs");
-  };
-  /* api 25 */
+  getListJobService = () => this.get("jobs"); /* api 20 */
+
   getListJobBaseMainJobService = (typeJobId) => {
-    return this.get(`jobs/by-type?type=${typeJobId}&skip=0&llimit=20`);
+    return this.get(`jobs/by-type?type=${typeJobId}&skip=0&llimit=20`); /* 25 */
   };
-  /* api 29 */
-  searchJobByNameService = (valueSearch) => {
-    return this.get(`jobs/by-name?name=${valueSearch}`);
-  };
+  searchJobByNameService = (valueSearch) => this.get(`jobs/by-name?name=${valueSearch}`); /* 29 */
 }
 
 export const manageJobServices = new manageJob();

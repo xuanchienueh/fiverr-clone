@@ -5,17 +5,27 @@ class users extends BaseServices {
     super();
   }
 
-  getListUserService = () => {
-    return this.get("users");
+  getListUserService = () => this.get("users"); /* api 1 */
+  createAdminUserService = (infoRegister) => this.post(`users`, infoRegister); /* api 2 */
+  getInfoDetailUserService = (userId) => this.get(`users/${userId}`); /* api 3 */
+  updateInfoUserService = (userId, infoUpdate) =>
+    this.putTokenAdmin(`users/${userId}`, infoUpdate); /* api 4 */
+
+  deleteUserService = (userId) => this.delete(`users/${userId}`); /* api 5 */
+  uploadAvatarService = (formData) => {
+    /* api 6 */
+    console.log(formData);
+    return this.post(`users/upload-avatar`, formData);
   };
 
-  customerRegisterService = (infoRegister) => {
-    return this.post("auth/signup", infoRegister);
+  searchUserService = (valueSearch) => {
+    /* api 7 */
+    return this.get(`users/pagination-search?name=${valueSearch}&skip=0&limit=3`);
   };
 
-  memberLoginService = (infoLogin) => {
-    return this.post(`auth/signin`, infoLogin);
-  };
+  customerRegisterService = (infoRegister) => this.post("auth/signup", infoRegister); /* api 31 */
+
+  memberLoginService = (infoLogin) => this.post(`auth/signin`, infoLogin); /* api 32 */
 }
 
 export const manageUserServices = new users();
