@@ -1,11 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function JobItem({ data }) {
+  const navigate = useNavigate();
   return (
-    <div className="px-3" onClick={() => console.log(data)}>
+    <div className="px-3" onClick={() => navigate(`/detailJob/${data._id}`)}>
       <Card>
         <Card.Img
           role="button"
@@ -43,7 +44,6 @@ export default function JobItem({ data }) {
               <i className=" text-warning fas fa-star"></i>
             </span>
             <span className="text-warning mr-1">{data.rating}</span>
-            {/* <span className="text-muted">{`(${data.buying_review_rating_count})`}</span> */}
           </div>
         </Card.Body>
         <div className="d-flex justify-content-between align-items-center px-3 py-1 border border-top-secondary border-right-0 border-left-0 border-bottom-0">

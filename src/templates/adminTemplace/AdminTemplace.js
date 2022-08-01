@@ -5,10 +5,27 @@ import {
   TeamOutlined,
   FileOutlined,
 } from "@ant-design/icons";
-import { Layout, Menu } from "antd";
+import { Dropdown, Layout, Menu } from "antd";
 import React from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Navigate, Outlet } from "react-router-dom";
+import { useSelector } from "react-redux";
 import "./adminTemplate.css";
+
+const menu = (
+  <Menu
+    items={[
+      { key: "1", label: <Link to="/profile">Profile</Link> },
+      {
+        key: "2",
+        label: (
+          <a href="/" onClick={() => localStorage.clear()}>
+            Logout
+          </a>
+        ),
+      },
+    ]}
+  />
+);
 
 const { Header, Content, Sider } = Layout;
 function getItem(label, key, icon, children) {
@@ -26,34 +43,49 @@ const items = [
   getItem("Files", "9", <FileOutlined />),
 ];
 
-const AdminTemplace = () => (
-  <Layout>
-    <Sider
-      breakpoint="lg"
-      collapsedWidth="0"
-      onBreakpoint={(broken) => {
-        console.log(broken);
-      }}
-      onCollapse={(collapsed, type) => {
-        console.log(collapsed, type);
-      }}
-    >
-      <Link to="/" className="logo">
-        <img width={200} src="/img/logo-main.png" alt="Logo" />
-      </Link>
-      <Menu theme="dark" mode="inline" defaultSelectedKeys={["4"]} items={items} />
-    </Sider>
+const AdminTemplace = () => {
+  const { infoUserLogin } = useSelector((state) => state.manageUserReducer);
+  let nameUser = infoUserLogin?.user?.name;
+  if (nameUser.indexOf(" ") > 0) {
+    nameUser = nameUser && nameUser.slice(0, nameUser.indexOf(" "));
+  }
+
+  if (infoUserLogin?.user?.role !== "ADMIN") {
+    return <Navigate to="/" replace={true} />;
+  }
+  return (
     <Layout>
-      <Header className="site-layout-sub-header-background bg-dark mb-3" style={{ padding: 0 }}>
-        <h3 className="text-success text-right">day la header</h3>
-      </Header>
-      <Content>
-        <div className="site-layout-background px-3" style={{ padding: 0, minHeight: 360 }}>
-          <Outlet />
-        </div>
-      </Content>
+      <Sider
+        breakpoint="lg"
+        collapsedWidth="0"
+        onBreakpoint={(broken) => {
+          console.log(broken);
+        }}
+        onCollapse={(collapsed, type) => {
+          console.log(collapsed, type);
+        }}
+      >
+        <Link to="/" className="logo">
+          <img width={200} src="/img/logo-main.png" alt="Logo" />
+        </Link>
+        <Menu theme="dark" mode="inline" defaultSelectedKeys={["4"]} items={items} />
+      </Sider>
+      <Layout>
+        <Header className="site-layout-sub-header-background mb-3" style={{ padding: 0 }}>
+          <div className="text-success text-right mr-3 float-right">
+            <Dropdown overlay={menu} placement="bottom" arrow trigger={["click"]}>
+              <div role="button">{`Welcome ${nameUser}`}</div>
+            </Dropdown>
+          </div>
+        </Header>
+        <Content>
+          <div className="site-layout-background px-3" style={{ padding: 0, minHeight: 360 }}>
+            <Outlet />
+          </div>
+        </Content>
+      </Layout>
     </Layout>
-  </Layout>
-);
+  );
+};
 
 export default AdminTemplace;

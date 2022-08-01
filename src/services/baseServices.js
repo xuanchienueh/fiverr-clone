@@ -50,6 +50,18 @@ export class BaseServices {
     });
   };
 
+  patch = (url, model) => {
+    return axios({
+      method: "PATCH",
+      url: `${DOMAIN_API}/${url}`,
+      data: model,
+      headers: {
+        token: `${localStorage.getItem(TOKEN)}`,
+        tokenByClass,
+      },
+    });
+  };
+
   putTokenAdmin = (url, model) => {
     return axios({
       method: "PUT",
