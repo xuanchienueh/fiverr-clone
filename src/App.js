@@ -1,3 +1,5 @@
+import LoadingSuspend from "components/loading/LoadingSuspend";
+import DetailJob from "pages/detailJob/DetailJob";
 import React, { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
@@ -19,7 +21,7 @@ function App() {
   return (
     <BrowserRouter>
       <Loading />
-      <Suspense fallback={<Loading />}>
+      <Suspense fallback={<LoadingSuspend />}>
         <Routes>
           <Route element={<HomeTemplate />}>
             <Route path="" element={<Home />} />
@@ -28,6 +30,7 @@ function App() {
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path="profile" element={<Profile />} />
+            <Route path="detailJob/:jobId" element={<DetailJob />} />
           </Route>
 
           <Route path="admin" element={<AdminTemplace />}>

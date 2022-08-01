@@ -1,0 +1,32 @@
+.bookingService {
+  border: 1px solid #dadbdd;
+  margin-top: 3rem;
+  :global {
+    .ant-tabs-card > .ant-tabs-nav .ant-tabs-tab-active {
+      h4 {
+        color: #1cbd72;
+      }
+    }
+    .ant-tabs-card.ant-tabs-top > .ant-tabs-nav .ant-tabs-tab + .ant-tabs-tab {
+      margin-left: 0;
+    }
+    .ant-tabs-card.ant-tabs-top > .ant-tabs-nav .ant-tabs-tab-active {
+      border-bottom: 1px solid #1cbd72;
+    }
+
+    .ant-tabs > .ant-tabs-nav .ant-tabs-nav-list {
+      width: 100%;
+      .ant-tabs-tab {
+        flex-grow: 1;
+        text-align: center;
+      }
+    }
+    .ant-tabs-tab-btn {
+      width: 100%;
+    }
+    .ant-tabs > .ant-tabs-nav .ant-tabs-nav-more,
+    .ant-tabs > div > .ant-tabs-nav .ant-tabs-nav-more {
+      display: none;
+    }
+  }
+}

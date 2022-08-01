@@ -1,11 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Modal } from "react-bootstrap";
+
 import { manageUserServices } from "services/manageUserServices";
 import styles from "./profile.module.scss";
 import { cameraImg } from "images/imageSvg";
-import { Modal } from "react-bootstrap";
 import UpdateInfoUser from "./updateInfoUser/UpdateInfoUser";
 import MoreInfoUser from "./moreInfoUser/MoreInfoUser";
+import { getListServiceUserBoughtAct } from "redux/manageJobs/actionCallApi";
+import { Navigate } from "react-router-dom";
 
 const callApiUploadAvatar = async (formData) => {
   try {
@@ -18,6 +21,8 @@ const callApiUploadAvatar = async (formData) => {
 
 export default function Profile() {
   const { infoUserLogin } = useSelector((state) => state.manageUserReducer);
+  const dispatch = useDispatch();
+  const { listServiceUserBought } = useSelector((state) => state.manageJobReducer);
 
   const [showUploadAvatar, setShowUploadAvatar] = useState(false);
   const [showModal, setshowModal] = useState(false);
@@ -28,6 +33,12 @@ export default function Profile() {
     let file = await e.target.files[0];
     callApiUploadAvatar({ avatar: file });
   };
+
+  useEffect(() => {
+    dispatch(getListServiceUserBoughtAct());
+  }, []);
+
+  if (!infoUserLogin.token) return <Navigate to="/login" replace={true} />;
 
   return (
     <>
@@ -98,7 +109,44 @@ export default function Profile() {
 
             <MoreInfoUser setshowModal={setshowModal} />
           </div>
-          <div className="col-8"></div>
+          <div className="con-12 col-lg-8">
+            <div className="card">
+              <div className="card-body d-flex justify-content-between align-items-center">
+                <h5 className="text-muted">
+                  It seem that you don't have any active Gigs. Get selling!
+                </h5>
+                <button className="btn btn-success">Create a New Gig</button>
+              </div>
+            </div>
+            {listServiceUserBought?.map((service, key) => (
+              <div key={key} className="card mt-3">
+                <div className="row no-gutters">
+                  <div className="col-md-4">
+                    <img
+                      src={service.image ? service.image : "/img/img-not-found.png"}
+                      alt="1"
+                      className="w-100"
+                      role="button"
+                    />
+                  </div>
+                  <div className="col-md-8">
+                    <div className="card-body">
+                      <h5 role="button" className="card-title">
+                        {service.name}
+                      </h5>
+                      <p className="card-text">
+                        This is a wider card with supporting text below as a natural lead-in to
+                        additional content. This content is a little bit longer.
+                      </p>
+                      <p className="card-text">
+                        <small className="text-muted">Last updated 3 mins ago</small>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
       <Modal show={showModal} onHide={() => setshowModal(false)}>

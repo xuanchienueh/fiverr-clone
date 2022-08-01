@@ -4,6 +4,7 @@ const initialState = {
   listJobs: [],
   listJobBaseMainJob: [],
   resultSearchJobByName: [],
+  listServiceUserBought: [],
 };
 
 export const manageJobSlice = createSlice({
@@ -19,8 +20,12 @@ export const manageJobSlice = createSlice({
     searchJobByName: (state, { payload }) => {
       state.resultSearchJobByName = payload;
     },
+    getlistServiceUserBought: (state, { payload }) => {
+      state.listServiceUserBought = payload;
+    },
   },
 });
 
-export const { getListJob, getListJobBaseMainJob, searchJobByName } = manageJobSlice.actions;
+export const { getListJob, getListJobBaseMainJob, searchJobByName, getlistServiceUserBought } =
+  manageJobSlice.actions;
 export default manageJobSlice.reducer;

@@ -11,8 +11,9 @@ import { logoSvg } from "images/imageSvg";
 function Header() {
   const { infoUserLogin } = useSelector((state) => state.manageUserReducer);
   let nameUser = infoUserLogin?.user?.name;
-  nameUser = nameUser && nameUser.slice(0, nameUser.indexOf(" "));
-  console.log(nameUser);
+  if (nameUser?.indexOf(" ") > 0) {
+    nameUser = nameUser && nameUser.slice(0, nameUser.indexOf(" "));
+  }
 
   return (
     <div className={` ${styles.header}`}>
