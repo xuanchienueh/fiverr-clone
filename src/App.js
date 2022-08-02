@@ -1,5 +1,4 @@
 import LoadingSuspend from "components/loading/LoadingSuspend";
-import DetailJob from "pages/detailJob/DetailJob";
 import React, { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
@@ -16,6 +15,9 @@ const Login = lazy(() => import("pages/login/Login"));
 const AdminTemplace = lazy(() => import("templates/adminTemplace/AdminTemplace"));
 const TableUser = lazy(() => import("pages/admin/manageUser/TableUser"));
 const AddUserAdmin = lazy(() => import("pages/admin/manageUser/addUserAdmin/AddUserAdmin"));
+const DetailJob = lazy(() => import("pages/detailJob/DetailJob"));
+const TableMainJob = lazy(() => import("pages/admin/manageMainJob/TableMainJob"));
+const EditMainJob = lazy(() => import("pages/admin/manageMainJob/EditMainJob"));
 
 function App() {
   return (
@@ -36,6 +38,8 @@ function App() {
           <Route path="admin" element={<AdminTemplace />}>
             <Route path="listuser" element={<TableUser />} />
             <Route path="adduser" element={<AddUserAdmin />} />
+            <Route path="listmainjob" element={<TableMainJob />} />
+            <Route path="editMainJob/:mainJobId" element={<EditMainJob />} />
           </Route>
         </Routes>
       </Suspense>

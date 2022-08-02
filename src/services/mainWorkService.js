@@ -4,13 +4,17 @@ class mainWork extends BaseServices {
   constructor() {
     super();
   }
-  /* api 14 */
-  getListTypeMainJobService = () => {
-    return this.get("type-jobs");
-  };
-  /* api 17 */
-  getDetailTypeMainJobService = (idMainJob) => {
-    return this.get(`type-jobs/${idMainJob}`);
-  };
+
+  createMainJobService = (mainJob) => this.post(`type-jobs`, mainJob); /* api 13 */
+
+  getListTypeMainJobService = () => this.get("type-jobs"); /* api 14 */
+
+  deleteMainJobService = (idMainJob) => this.delete(`type-jobs/${idMainJob}`); /* api 15 */
+
+  updateMainJobService = (idMainJob, value = {}) =>
+    this.put(`type-jobs/${idMainJob}`, value); /* api16 */
+
+  getDetailTypeMainJobService = (idMainJob) => this.get(`type-jobs/${idMainJob}`); /* api 17 */
 }
+
 export const mainWorkService = new mainWork();

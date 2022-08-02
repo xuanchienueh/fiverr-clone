@@ -39,7 +39,10 @@ const items = [
     getItem(<Link to="/admin/adduser">Add User</Link>, "3"),
     getItem(<Link to="/admin/listuser">List User</Link>, "4"),
   ]),
-  getItem("Team", "sub2", <TeamOutlined />, [getItem("Team 1", "6"), getItem("Team 2", "8")]),
+  getItem("Main Job", "sub2", <TeamOutlined />, [
+    getItem(<Link to="/admin/listmainjob">List Main Job</Link>, "6"),
+    getItem("Team 2", "8"),
+  ]),
   getItem("Files", "9", <FileOutlined />),
 ];
 
