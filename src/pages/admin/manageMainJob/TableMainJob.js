@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Space, Table } from "antd";
+import { Popconfirm, Space, Table } from "antd";
 import Swal from "sweetalert2";
 
 import { getListTypeMainJobAction } from "redux/manageMainWork/actionCallApi";
@@ -68,9 +68,17 @@ export default function TableMainJob() {
           <Link to={`/admin/editMainJob/${record._id}`} className="btn btn-outline-success">
             Edit
           </Link>
-          <a onClick={() => handleDeleteMainJob(record._id)} className="btn btn-outline-danger">
-            Delete
-          </a>
+
+          <Popconfirm
+            title="Are you sure？"
+            okText="Yes"
+            cancelText="No"
+            onConfirm={() => handleDeleteMainJob(record._id)}
+          >
+            <a className="btn btn-outline-danger" href="#">
+              Delete
+            </a>
+          </Popconfirm>
         </Space>
       ),
     },

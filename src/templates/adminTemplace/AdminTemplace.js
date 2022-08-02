@@ -1,10 +1,4 @@
-import {
-  PieChartOutlined,
-  UserOutlined,
-  DesktopOutlined,
-  TeamOutlined,
-  FileOutlined,
-} from "@ant-design/icons";
+import { PieChartOutlined, DesktopOutlined } from "@ant-design/icons";
 import { Dropdown, Layout, Menu } from "antd";
 import React from "react";
 import { Link, Navigate, Outlet } from "react-router-dom";
@@ -35,27 +29,27 @@ function getItem(label, key, icon, children) {
 const items = [
   getItem("Option 1", "1", <PieChartOutlined />),
   getItem("Option 2", "2", <DesktopOutlined />),
-  getItem("User", "sub1", <UserOutlined />, [
+  getItem("User", "sub1", <></>, [
     getItem(<Link to="/admin/adduser">Add User</Link>, "3"),
     getItem(<Link to="/admin/listuser">List User</Link>, "4"),
   ]),
-  getItem("Main Job", "sub2", <TeamOutlined />, [
+  getItem("Main Job", "sub2", <></>, [
     getItem(<Link to="/admin/listmainjob">List Main Job</Link>, "6"),
-    getItem("Team 2", "8"),
   ]),
-  getItem("Files", "9", <FileOutlined />),
+  getItem("Second Job", "sub3", <></>, [
+    getItem(<Link to="/admin/listSecondJob">List Second Job</Link>, "7"),
+  ]),
 ];
 
 const AdminTemplace = () => {
   const { infoUserLogin } = useSelector((state) => state.manageUserReducer);
   let nameUser = infoUserLogin?.user?.name;
-  if (nameUser.indexOf(" ") > 0) {
+  if (nameUser?.indexOf(" ") > 0) {
     nameUser = nameUser && nameUser.slice(0, nameUser.indexOf(" "));
   }
 
-  if (infoUserLogin?.user?.role !== "ADMIN") {
-    return <Navigate to="/" replace={true} />;
-  }
+  if (infoUserLogin?.user?.role !== "ADMIN") return <Navigate to="/" replace={true} />;
+
   return (
     <Layout>
       <Sider
