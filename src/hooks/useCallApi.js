@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-function CallApi(serviceFunction, value = null, number, reverse = false) {
+function useCallApi(serviceFunction, value = null, number, reverse = false) {
   const [data, setData] = useState(null);
   useEffect(() => {
     (async () => {
@@ -19,4 +19,4 @@ function CallApi(serviceFunction, value = null, number, reverse = false) {
   return data;
 }
 
-export default CallApi;
+export default useCallApi;

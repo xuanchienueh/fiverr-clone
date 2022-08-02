@@ -8,7 +8,7 @@ import { manageJobServices } from "services/manageJobServices";
 import styles from "./detailJob.module.scss";
 import BookService from "./bookService/BookService";
 import { manageComment } from "../../services/manageComment";
-import callApi from "hooks/callApi";
+import useCallApi from "hooks/useCallApi";
 
 const { TabPane } = Tabs;
 const layout = {
@@ -26,8 +26,8 @@ function DetailJob() {
   const { infoUserLogin } = useSelector((state) => state.manageUserReducer);
   const [loadComment, setLoadComment] = useState(0);
 
-  let comments = callApi(manageComment.getCommentService, jobId, loadComment, "reverse");
-  let jobDetail = callApi(manageJobServices.getDetailJobService, jobId) || { _id: "" };
+  let comments = useCallApi(manageComment.getCommentService, jobId, loadComment, "reverse");
+  let jobDetail = useCallApi(manageJobServices.getDetailJobService, jobId) || { _id: "" };
 
   const onFinish = (values) => {
     values.job = jobId;
