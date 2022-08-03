@@ -1,6 +1,6 @@
 import { hideLoading, showLoading } from "redux/loading/loadingSlice";
 import { manageUserServices } from "services/manageUserServices";
-import { getListUser, infoUserLogin } from "./manageUserSlice";
+import { getInfoDetailUser, getListUser, getInfoUserLogin } from "./manageUserSlice";
 
 export const getListUserAction = () => {
   return async (dispatch, getState) => {
@@ -23,12 +23,23 @@ export const memberLoginAction = (infoLogin, navigate) => {
     dispatch(showLoading());
     try {
       const { status, data } = await manageUserServices.memberLoginService(infoLogin);
-      if (status === 200) dispatch(infoUserLogin(data));
+      if (status === 200) dispatch(getInfoUserLogin(data));
       navigate("/", { replace: true });
       dispatch(hideLoading());
     } catch (err) {
       dispatch(hideLoading());
       console.log("memberLoginAction fail", err);
+    }
+  };
+};
+
+export const getInfoDetailUserAct = (userId) => {
+  return async (dispatch, getState) => {
+    try {
+      let result = await manageUserServices.getInfoDetailUserService(userId);
+      dispatch(getInfoDetailUser(result.data));
+    } catch (err) {
+      console.log("getInfoDetailUserAct fail", err);
     }
   };
 };

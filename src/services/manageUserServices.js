@@ -12,11 +12,7 @@ class users extends BaseServices {
     this.putTokenAdmin(`users/${userId}`, infoUpdate); /* api 4 */
 
   deleteUserService = (userId) => this.delete(`users/${userId}`); /* api 5 */
-  uploadAvatarService = (formData) => {
-    /* api 6 */
-    console.log(formData);
-    return this.post(`users/upload-avatar`, formData);
-  };
+  uploadAvatarService = (formData) => this.post(`users/upload-avatar`, formData); /* api 6 */
 
   searchUserService = (valueSearch) => {
     /* api 7 */

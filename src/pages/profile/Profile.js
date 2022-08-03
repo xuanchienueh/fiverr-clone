@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Modal } from "react-bootstrap";
+import { Navigate } from "react-router-dom";
 
 import { manageUserServices } from "services/manageUserServices";
 import styles from "./profile.module.scss";
@@ -8,30 +9,35 @@ import { cameraImg } from "images/imageSvg";
 import UpdateInfoUser from "./updateInfoUser/UpdateInfoUser";
 import MoreInfoUser from "./moreInfoUser/MoreInfoUser";
 import { getListServiceUserBoughtAct } from "redux/manageJobs/actionCallApi";
-import { Navigate } from "react-router-dom";
-
-const callApiUploadAvatar = async (formData) => {
-  try {
-    let result = await manageUserServices.uploadAvatarService(formData);
-    console.log(result);
-  } catch (err) {
-    console.log(err);
-  }
-};
+import { getInfoUserLogin } from "redux/manageUser/manageUserSlice";
 
 export default function Profile() {
-  const { infoUserLogin } = useSelector((state) => state.manageUserReducer);
   const dispatch = useDispatch();
+  const { infoUserLogin } = useSelector((state) => state.manageUserReducer);
   const { listServiceUserBought } = useSelector((state) => state.manageJobReducer);
-
   const [showUploadAvatar, setShowUploadAvatar] = useState(false);
   const [showModal, setshowModal] = useState(false);
+  let [avatar, setAvatar] = useState(infoUserLogin.user.avatar);
   const inputUpload = useRef();
+
   const showUploadInput = () => inputUpload.current.click();
 
   const handleChangeImage = async (e) => {
     let file = await e.target.files[0];
-    callApiUploadAvatar({ avatar: file });
+    const data = new FormData();
+    data.append("avatar", file);
+    try {
+      let result = await manageUserServices.uploadAvatarService(data);
+      setAvatar(result.data.avatar);
+      dispatch(
+        getInfoUserLogin({
+          ...infoUserLogin,
+          user: { ...infoUserLogin.user, avatar: result.data.avatar },
+        })
+      );
+    } catch (err) {
+      console.log("upload fail", err);
+    }
   };
 
   useEffect(() => {
@@ -49,16 +55,13 @@ export default function Profile() {
               <div className={styles.avatar}>
                 <img
                   className="card-img-top mx-auto d-block rounded-circle"
-                  src={
-                    infoUserLogin?.user?.avatar
-                      ? infoUserLogin?.user?.avatar
-                      : "/img/avatar-default.jpg"
-                  }
+                  src={avatar}
                   alt="avatar default"
                   style={{ width: "170px", height: "170px" }}
                   onMouseOver={() => setTimeout(() => setShowUploadAvatar(true), 100)}
                   onClick={showUploadInput}
                 />
+
                 {showUploadAvatar && (
                   <div
                     role="button"
