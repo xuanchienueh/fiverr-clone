@@ -48,10 +48,7 @@ export default function Profile() {
 
   return (
     <>
-      <button className="float-right" onClick={() => {}}>
-        number
-      </button>
-      <div className="container max-widthContainer">
+       <div className="container max-widthContainer">
         <div className="row">
           <div className="col-lg-4 col-12">
             <div className="card">
