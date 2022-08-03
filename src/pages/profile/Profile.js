@@ -48,33 +48,12 @@ export default function Profile() {
 
   return (
     <>
-      <button className="float-right" onClick={() => {}}>
-        number
-      </button>
-      <div className="container max-widthContainer">
+       <div className="container max-widthContainer">
         <div className="row">
           <div className="col-lg-4 col-12">
             <div className="card">
               <div className={styles.avatar}>
-                {/* {avatar ? (
-                  <img
-                    className="card-img-top mx-auto d-block rounded-circle"
-                    src={avatar}
-                    alt="avatar default"
-                    style={{ width: "170px", height: "170px" }}
-                    onMouseOver={() => setTimeout(() => setShowUploadAvatar(true), 100)}
-                    onClick={showUploadInput}
-                  />
-                ) : (
-                  <img
-                    className="card-img-top mx-auto d-block rounded-circle"
-                    src={"/img/avatar-default.jpg"}
-                    alt="avatar default"
-                    style={{ width: "170px", height: "170px" }}
-                    onMouseOver={() => setTimeout(() => setShowUploadAvatar(true), 100)}
-                    onClick={showUploadInput}
-                  />
-                )} */}
+               
 
                 <img
                   className="card-img-top mx-auto d-block rounded-circle"
