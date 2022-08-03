@@ -127,6 +127,7 @@ export default function TableSecondJob() {
         name="subtype"
         className="d-none"
         ref={refUploadImg}
+        accept="image/png, image/jpeg, image/jpg"
       />
       <div className="d-block d-md-flex align-items-center justify-content-between pt-5">
         <Link to="/admin/add-edit-SecondJob" className="btn btn-primary mb-3 mb-md-0">
