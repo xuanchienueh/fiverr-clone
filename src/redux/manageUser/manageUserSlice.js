@@ -6,6 +6,7 @@ let infoUserLoginInit = JSON.parse(localStorage.getItem(USER_LOGIN)) || {};
 const initialState = {
   listUser: [],
   infoUserLogin: infoUserLoginInit,
+  infoDetailUser: {},
 };
 
 const manageUserSlice = createSlice({
@@ -15,13 +16,16 @@ const manageUserSlice = createSlice({
     getListUser: (state, { payload }) => {
       state.listUser = payload;
     },
-    infoUserLogin: (state, { payload }) => {
+    getInfoUserLogin: (state, { payload }) => {
       localStorage.setItem(TOKEN, payload.token);
       localStorage.setItem(USER_LOGIN, JSON.stringify(payload));
       state.infoUserLogin = payload;
     },
+    getInfoDetailUser: (state, { payload }) => {
+      state.infoDetailUser = payload;
+    },
   },
 });
 
-export const { getListUser, infoUserLogin } = manageUserSlice.actions;
+export const { getListUser, getInfoUserLogin, getInfoDetailUser } = manageUserSlice.actions;
 export default manageUserSlice.reducer;

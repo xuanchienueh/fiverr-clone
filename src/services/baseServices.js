@@ -61,28 +61,4 @@ export class BaseServices {
       },
     });
   };
-
-  putTokenAdmin = (url, model) => {
-    return axios({
-      method: "PUT",
-      url: `${DOMAIN_API}/${url}`,
-      data: model,
-      headers: {
-        token: `${tokenAdmin}`,
-        tokenByClass,
-      },
-    });
-  };
-
-  postTokenAdmin = (url, model) => {
-    return axios({
-      method: "POST",
-      url: `${DOMAIN_API}/${url}`,
-      data: model,
-      headers: {
-        token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmRmODFkODRiNGMyNzAwMWM4MTBjMmIiLCJlbWFpbCI6ImdyZXRAZ21haWwuY29tIiwicm9sZSI6IkNMSUVOVCIsImlhdCI6MTY1ODk3NzA2OX0.PfXaPzPSAt28Bq0dZUu9SvEaGvRuVs_OP9_qX2QC1go`,
-        tokenByClass,
-      },
-    });
-  };
 }

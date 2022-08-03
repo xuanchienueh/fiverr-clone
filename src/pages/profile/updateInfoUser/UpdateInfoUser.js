@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import styles from "./updateInfoUser.module.scss";
 import { manageUserServices } from "services/manageUserServices";
-import { infoUserLogin as getInfoUserLogin } from "redux/manageUser/manageUserSlice";
+import { getInfoUserLogin } from "redux/manageUser/manageUserSlice";
 
 const { Option } = Select;
 const formItemLayout = {
