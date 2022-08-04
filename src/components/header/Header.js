@@ -17,7 +17,7 @@ function Header() {
 
   return (
     <div className={` ${styles.header}`}>
-      <Navbar bg="light" expand="xl" variant="light">
+      <Navbar expand="xl" variant="light">
         <LinkContainer to="/">
           <Navbar.Brand>{logoSvg}</Navbar.Brand>
         </LinkContainer>

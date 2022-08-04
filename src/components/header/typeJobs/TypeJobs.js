@@ -7,6 +7,7 @@ import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import styles from "./typeJobs.module.scss";
 import { getListTypeMainJobAction } from "redux/manageMainWork/actionCallApi";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const settings = {
   dots: false,
@@ -62,7 +63,7 @@ function TypeJobs() {
         top: "-10px",
       },
     };
-    let columnCount = Math.floor(job.subTypeJobs.length / 7);
+    let columnCount = Math.floor(job.subTypeJobs.length / 7) || 1;
     return (
       <Tooltip id={job._id} {...styleTooltip}>
         <div
@@ -72,9 +73,14 @@ function TypeJobs() {
           onMouseMove={() => setShowTooltip(job._id)}
         >
           {job.subTypeJobs.map((subTypeJob) => (
-            <a key={subTypeJob._id} href="#" className="list-group-item list-group-item-action h6">
+            <Link
+              onClick={() => console.log(subTypeJob)}
+              key={subTypeJob._id}
+              to={`/listJobs/type-job-id=${subTypeJob.typeJob}`}
+              className="list-group-item list-group-item-action h6"
+            >
               {subTypeJob.name}
-            </a>
+            </Link>
           ))}
         </div>
       </Tooltip>

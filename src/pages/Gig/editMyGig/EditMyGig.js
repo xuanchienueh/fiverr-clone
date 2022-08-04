@@ -13,7 +13,6 @@ const EditMyGig = () => {
   const { GigId } = useParams();
   const navigate = useNavigate();
   let detailGig = useCallApi(manageJobServices.getDetailJobService, GigId);
-  console.log(detailGig);
   let [resultSwitch, setResultSwitch] = useState(null);
 
   if (!resultSwitch) {

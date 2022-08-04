@@ -36,24 +36,35 @@
 
 .jobItem {
   position: relative;
-
-  :global {
+  &:hover {
     .cover {
-      background-color: rgba($color: #000000, $alpha: 0.8);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      opacity: 0;
-      position: absolute;
-      top: 0;
-      left: 32px;
-      bottom: 0;
-      right: 32px;
-      z-index: 1;
-      &:hover {
-        opacity: 1;
-      }
-      transition: all 0.3s linear;
+      opacity: 1;
+      z-index: 2;
     }
   }
+}
+.coverMobile {
+  position: absolute;
+  top: 0;
+  left: 32px;
+  bottom: 0;
+  right: 32px;
+  z-index: 1;
+  background-color: transparent;
+}
+
+.cover {
+  background-color: rgba($color: #000000, $alpha: 0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 32px;
+  bottom: 0;
+  right: 32px;
+  z-index: -1;
+
+  transition: all 0.3s linear;
 }
