@@ -1,5 +1,5 @@
 import LoadingSuspend from "components/loading/LoadingSuspend";
-import AddSecondJob from "pages/admin/manageSecondJob/AddSecondJob";
+
 import React, { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
@@ -20,6 +20,10 @@ const DetailJob = lazy(() => import("pages/detailJob/DetailJob"));
 const TableMainJob = lazy(() => import("pages/admin/manageMainJob/TableMainJob"));
 const EditMainJob = lazy(() => import("pages/admin/manageMainJob/EditMainJob"));
 const TableSecondJob = lazy(() => import("pages/admin/manageSecondJob/TableSecondJob"));
+const AddSecondJob = lazy(() => import("pages/admin/manageSecondJob/AddSecondJob"));
+const CreateNewGig = lazy(() => import("pages/Gig/createNewGig/CreateNewGig"));
+const MyListGig = lazy(() => import("pages/Gig/myListGig/MyListGig"));
+const EditMyGig = lazy(() => import("pages/Gig/editMyGig/EditMyGig"));
 
 function App() {
   return (
@@ -35,6 +39,9 @@ function App() {
             <Route path="register" element={<Register />} />
             <Route path="profile" element={<Profile />} />
             <Route path="detailJob/:jobId" element={<DetailJob />} />
+            <Route path="createNewGig" element={<CreateNewGig />} />
+            <Route path="myGigs" element={<MyListGig />} />
+            <Route path="editMyGig/:GigId" element={<EditMyGig />} />
           </Route>
 
           <Route path="admin" element={<AdminTemplace />}>

@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Swal from "sweetalert2";
 import { manageJobServices } from "services/manageJobServices";
+import { alertSuccess } from "components/alert/alertSuccess";
 
 function BookService({ jobId }) {
   const bookingService = () => {
@@ -9,13 +10,7 @@ function BookService({ jobId }) {
       try {
         let { status } = await manageJobServices.bookService(jobId);
         if (status === 200) {
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Success",
-            showConfirmButton: false,
-            timer: 1500,
-          });
+          alertSuccess();
         }
       } catch (err) {
         console.log("bookingService fail", err);

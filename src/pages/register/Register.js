@@ -7,6 +7,7 @@ import { Link, Navigate } from "react-router-dom";
 import { manageUserServices } from "services/manageUserServices";
 import styles from "./register.module.scss";
 import { useSelector } from "react-redux";
+import { alertSuccess } from "components/alert/alertSuccess";
 
 const { Option } = Select;
 
@@ -29,13 +30,7 @@ const Register = () => {
     let result = manageUserServices.customerRegisterService(values);
     result
       .then((resolve) => {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Register success!",
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        alertSuccess();
       })
       .catch((reject) => {
         console.log(reject);

@@ -4,8 +4,13 @@ class manageJob extends BaseServices {
   constructor() {
     super();
   }
+  createYourJobService = (model) => this.post(`jobs`, model); /* api 19 */
 
   getListJobService = () => this.get("jobs"); /* api 20 */
+
+  deleteJobService = (idJob) => this.delete(`jobs/${idJob}`); /* api 21 */
+
+  updateJobService = (idJob, model) => this.put(`jobs/${idJob}`, model); /* api 22 */
 
   getDetailJobService = (idJob) => this.get(`jobs/${idJob}`); /* api 23 */
 
@@ -17,6 +22,9 @@ class manageJob extends BaseServices {
   getListServiceUserBoughtService = () => this.get(`jobs/by-user`); /* api 27 */
 
   searchJobByNameService = (valueSearch) => this.get(`jobs/by-name?name=${valueSearch}`); /* 29 */
+
+  uploadImgJobService = (idJob, formData) =>
+    this.post(`jobs/upload-image/${idJob}`, formData); /* api 30 */
 }
 
 export const manageJobServices = new manageJob();

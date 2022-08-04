@@ -1,0 +1,70 @@
+.listJobs {
+  :global {
+    .table {
+      display: none;
+    }
+    .react-bootstrap-table-pagination {
+      align-items: baseline;
+      .col-lg-6 {
+        max-width: 36%;
+      }
+      .react-bootstrap-table-pagination-list {
+        .pagination {
+          justify-content: center;
+          .page-item {
+            .page-link {
+              margin-left: 4px;
+              margin-right: 4px;
+              color: black;
+              border-radius: 0.25rem;
+              &:focus {
+                box-shadow: none;
+              }
+            }
+          }
+          .page-item.active {
+            .page-link {
+              background-color: #ccc;
+              border-color: #ccc;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.jobItem {
+  position: relative;
+  &:hover {
+    .cover {
+      opacity: 1;
+      z-index: 2;
+    }
+  }
+}
+.coverMobile {
+  position: absolute;
+  top: 0;
+  left: 32px;
+  bottom: 0;
+  right: 32px;
+  z-index: 1;
+  background-color: transparent;
+}
+
+.cover {
+  background-color: rgba($color: #000000, $alpha: 0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 32px;
+  bottom: 0;
+  right: 32px;
+  z-index: -1;
+
+  transition: all 0.3s linear;
+}
