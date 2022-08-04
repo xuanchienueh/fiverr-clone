@@ -17,7 +17,7 @@ function Header() {
 
   return (
     <div className={` ${styles.header}`}>
-      <Navbar bg="light" expand="xl" variant="light">
+      <Navbar expand="xl" variant="light">
         <LinkContainer to="/">
           <Navbar.Brand>{logoSvg}</Navbar.Brand>
         </LinkContainer>
@@ -39,8 +39,14 @@ function Header() {
                 <LinkContainer to="/profile">
                   <NavDropdown.Item>Profile</NavDropdown.Item>
                 </LinkContainer>
-                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+
+                <LinkContainer to="/createNewGig">
+                  <NavDropdown.Item>Create New Gig</NavDropdown.Item>
+                </LinkContainer>
+
+                <LinkContainer to="/myGigs">
+                  <NavDropdown.Item>My Gigs</NavDropdown.Item>
+                </LinkContainer>
                 <NavDropdown.Divider />
                 <NavDropdown.Item
                   onClick={() => {

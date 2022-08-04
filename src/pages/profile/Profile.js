@@ -10,6 +10,7 @@ import UpdateInfoUser from "./updateInfoUser/UpdateInfoUser";
 import MoreInfoUser from "./moreInfoUser/MoreInfoUser";
 import { getListServiceUserBoughtAct } from "redux/manageJobs/actionCallApi";
 import { getInfoUserLogin } from "redux/manageUser/manageUserSlice";
+import { Link } from "react-router-dom";
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -120,7 +121,7 @@ export default function Profile() {
                 <h5 className="text-muted">
                   It seem that you don't have any active Gigs. Get selling!
                 </h5>
-                <button className="btn btn-success">Create a New Gig</button>
+                <Link to='/createNewGig' className="btn btn-success">Create a New Gig</Link>
               </div>
             </div>
             {listServiceUserBought?.map((service, key) => (
