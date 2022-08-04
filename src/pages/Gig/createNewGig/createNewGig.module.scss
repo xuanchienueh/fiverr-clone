@@ -1,0 +1,27 @@
+.CreateNewGig {
+  margin-top: 3rem;
+  :global {
+    .ant-input-number-lg {
+      width: 200px;
+    }
+    .ant-row {
+      margin-bottom: 1rem;
+    }
+    .ant-input-number-handler-wrap {
+      display: none;
+    }
+
+    .ant-form-item-control {
+      position: relative;
+      .ant-form-item-explain {
+        position: absolute;
+        z-index: 2;
+        top: 100%;
+      }
+    }
+
+    .ant-form-item .ant-form-item-label {
+      padding: 0;
+    }
+  }
+}

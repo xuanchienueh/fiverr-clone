@@ -7,6 +7,8 @@ import Swal from "sweetalert2";
 
 import { getListTypeMainJobAction } from "redux/manageMainWork/actionCallApi";
 import { manageSecondJobService } from "services/manageSecondJob";
+import { alertSuccess } from "components/alert/alertSuccess";
+import { alertFail } from "components/alert/alertFail";
 
 const AddSecondJob = () => {
   const dispatch = useDispatch();
@@ -27,35 +29,19 @@ const AddSecondJob = () => {
       manageSecondJobService
         .updateSecondJobService(idSecondJob, values)
         .then((result) => {
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Success",
-            showConfirmButton: false,
-            timer: 1500,
-          });
+          alertSuccess();
+
           form.resetFields();
         })
         .catch(() => {
-          Swal.fire({
-            position: "top-end",
-            icon: "error",
-            title: "Fail",
-            showConfirmButton: false,
-            timer: 1500,
-          });
+          alertFail();
         });
     } else {
       manageSecondJobService
         .createSecondJobService(values)
         .then((result) => {
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Success",
-            showConfirmButton: false,
-            timer: 1500,
-          });
+          alertSuccess();
+
           form.resetFields();
         })
         .catch((err) => {

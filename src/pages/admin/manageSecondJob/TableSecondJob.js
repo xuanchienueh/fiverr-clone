@@ -7,6 +7,8 @@ import Swal from "sweetalert2";
 import { getListSecondJobAct } from "redux/manageSecondJob/actionCallApi";
 import { getListTypeMainJobAction } from "redux/manageMainWork/actionCallApi";
 import { manageSecondJobService } from "services/manageSecondJob";
+import { alertSuccess } from "components/alert/alertSuccess";
+import { alertFail } from "components/alert/alertFail";
 
 const { Search } = Input;
 
@@ -70,24 +72,13 @@ export default function TableSecondJob() {
     manageSecondJobService
       .deleteScondJobService(idSecondJob)
       .then(() => {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Success",
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        alertSuccess();
+
         dispatch(getListSecondJobAct());
         setResultSearchName([]);
       })
       .catch(() => {
-        Swal.fire({
-          position: "top-end",
-          icon: "errors",
-          title: "Fail",
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        alertFail();
       });
   }
   if (resultSearchName.length > 0) {
@@ -106,13 +97,7 @@ export default function TableSecondJob() {
         data
       );
       if (status === 200) {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Upload Success",
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        alertSuccess();
       }
     } catch (err) {
       console.log(err);

@@ -1,10 +1,10 @@
 import React from "react";
 import { Form, Input, Select, DatePicker } from "antd";
-import Swal from "sweetalert2";
 import moment from "moment";
 
 import { manageUserServices } from "services/manageUserServices";
 import styles from "./addUserAdmin.module.scss";
+import { alertSuccess } from "components/alert/alertSuccess";
 
 const { Option } = Select;
 
@@ -23,14 +23,7 @@ const Register = () => {
     let promise = manageUserServices.createAdminUserService(values);
     promise
       .then((result) => {
-        console.log(result);
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Register success!",
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        alertSuccess();
       })
       .catch((err) => {
         console.log("create admin user fail", err);

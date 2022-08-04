@@ -4,8 +4,11 @@ class manageJob extends BaseServices {
   constructor() {
     super();
   }
+  createYourJobService = (model) => this.post(`jobs`, model); /* api 19 */
 
   getListJobService = () => this.get("jobs"); /* api 20 */
+
+  updateJobService = (idJob, model) => this.put(`jobs/${idJob}`, model); /* api 22 */
 
   getDetailJobService = (idJob) => this.get(`jobs/${idJob}`); /* api 23 */
 
