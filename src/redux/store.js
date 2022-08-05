@@ -3,7 +3,7 @@ import mainWorkReducer from "./manageMainWork/mainWorkSlice";
 import manageJobReducer from "./manageJobs/manageJobSlice";
 import manageUserReducer from "./manageUser/manageUserSlice";
 import loadingReducer from "./loading/loadingSlice";
-import manageSecondJobReducer from "./manageSecondJob/secondJobSlice";
+import manageSubJobReducer from "./manageSubJob/subJobSlice";
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +11,6 @@ export const store = configureStore({
     manageJobReducer: manageJobReducer,
     manageUserReducer: manageUserReducer,
     loadingReducer: loadingReducer,
-    manageSecondJobReducer: manageSecondJobReducer,
+    manageSubJobReducer: manageSubJobReducer,
   },
 });

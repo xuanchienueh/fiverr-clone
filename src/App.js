@@ -19,8 +19,8 @@ const AddUserAdmin = lazy(() => import("pages/admin/manageUser/addUserAdmin/AddU
 const DetailJob = lazy(() => import("pages/detailJob/DetailJob"));
 const TableMainJob = lazy(() => import("pages/admin/manageMainJob/TableMainJob"));
 const EditMainJob = lazy(() => import("pages/admin/manageMainJob/EditMainJob"));
-const TableSecondJob = lazy(() => import("pages/admin/manageSecondJob/TableSecondJob"));
-const AddSecondJob = lazy(() => import("pages/admin/manageSecondJob/AddSecondJob"));
+const TableSubJob = lazy(() => import("pages/admin/manageSubJob/TableSubJob"));
+const AddSubJob = lazy(() => import("pages/admin/manageSubJob/AddSubJob"));
 const CreateNewGig = lazy(() => import("pages/Gig/createNewGig/CreateNewGig"));
 const MyListGig = lazy(() => import("pages/Gig/myListGig/MyListGig"));
 const EditMyGig = lazy(() => import("pages/Gig/editMyGig/EditMyGig"));
@@ -49,9 +49,9 @@ function App() {
             <Route path="adduser" element={<AddUserAdmin />} />
             <Route path="listmainjob" element={<TableMainJob />} />
             <Route path="editMainJob/:mainJobId" element={<EditMainJob />} />
-            <Route path="listSecondJob" element={<TableSecondJob />} />
-            <Route path="add-edit-SecondJob" element={<AddSecondJob />} />
-            <Route path="add-edit-SecondJob/:idSecondJob" element={<AddSecondJob />} />
+            <Route path="listSubJob" element={<TableSubJob />} />
+            <Route path="add-edit-SubJob" element={<AddSubJob />} />
+            <Route path="add-edit-SubJob/:idSubJob" element={<AddSubJob />} />
           </Route>
         </Routes>
       </Suspense>

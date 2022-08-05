@@ -6,28 +6,28 @@ import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 
 import { getListTypeMainJobAction } from "redux/manageMainWork/actionCallApi";
-import { manageSecondJobService } from "services/manageSecondJob";
+import { manageSubJobService } from "services/manageSubJob";
 import { alertSuccess } from "components/alert/alertSuccess";
 import { alertFail } from "components/alert/alertFail";
 
-const AddSecondJob = () => {
+const AddSubJob = () => {
   const dispatch = useDispatch();
   const [form] = Form.useForm();
-  const { idSecondJob } = useParams();
-  let jobDetail = useCallApi(manageSecondJobService.getDetailSecondJobService, idSecondJob);
+  const { idSubJob } = useParams();
+  let jobDetail = useCallApi(manageSubJobService.getDetailSubJobService, idSubJob);
 
   const { listMainWork } = useSelector((state) => state.mainWorkReducer);
 
   useEffect(() => {
     dispatch(getListTypeMainJobAction());
-  }, [idSecondJob]);
+  }, [idSubJob]);
 
   const onFinish = (values) => {
     values.status = true;
-    if (idSecondJob) {
+    if (idSubJob) {
       if (values.typeJob.value) values.typeJob = values.typeJob.value;
-      manageSecondJobService
-        .updateSecondJobService(idSecondJob, values)
+      manageSubJobService
+        .updateSubJobService(idSubJob, values)
         .then((result) => {
           alertSuccess();
 
@@ -37,11 +37,10 @@ const AddSecondJob = () => {
           alertFail();
         });
     } else {
-      manageSecondJobService
-        .createSecondJobService(values)
+      manageSubJobService
+        .createSubJobService(values)
         .then((result) => {
           alertSuccess();
-
           form.resetFields();
         })
         .catch((err) => {
@@ -50,7 +49,7 @@ const AddSecondJob = () => {
     }
   };
 
-  if (idSecondJob && jobDetail) {
+  if (idSubJob && jobDetail) {
     return (
       <Form
         form={form}
@@ -98,7 +97,7 @@ const AddSecondJob = () => {
     );
   }
 
-  if (!idSecondJob && !jobDetail) {
+  if (!idSubJob && !jobDetail) {
     return (
       <Form
         form={form}
@@ -140,4 +139,4 @@ const AddSecondJob = () => {
   }
 };
 
-export default AddSecondJob;
+export default AddSubJob;
