@@ -37,7 +37,7 @@ const items = [
     getItem(<Link to="/admin/listmainjob">List Main Job</Link>, "6"),
   ]),
   getItem("Second Job", "sub3", <></>, [
-    getItem(<Link to="/admin/listSecondJob">List Second Job</Link>, "7"),
+    getItem(<Link to="/admin/listSubJob">List Second Job</Link>, "7"),
   ]),
 ];
 
