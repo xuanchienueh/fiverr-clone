@@ -17,12 +17,8 @@ export default function Login() {
   const navigate = useNavigate();
   const { infoUserLogin } = useSelector((state) => state.manageUserReducer);
 
-  console.log(infoUserLogin);
   const formik = useFormik({
-    initialValues: {
-      password: "",
-      email: "",
-    },
+    initialValues: { password: "", email: "" },
     validationSchema: Schema,
     onSubmit: (values) => {
       dispatch(memberLoginAction(values, navigate));

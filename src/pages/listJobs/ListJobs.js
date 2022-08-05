@@ -134,7 +134,7 @@ export default function ListJobs() {
           </div>
         </>
       ) : (
-        <h1 className="text-center mt-5">No Services Found For Your Search</h1>
+        <h1 className="text-center my-5">No Services Found For Your Search</h1>
       )}
     </div>
   );
