@@ -1,6 +1,4 @@
-import React from "react";
 import PropTypes from "prop-types";
-import Swal from "sweetalert2";
 import { manageJobServices } from "services/manageJobServices";
 import { alertSuccess } from "components/alert/alertSuccess";
 

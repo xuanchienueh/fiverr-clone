@@ -1,4 +1,5 @@
 import Swal from "sweetalert2";
+
 const alertFail = () => {
   Swal.fire({
     position: "top-end",

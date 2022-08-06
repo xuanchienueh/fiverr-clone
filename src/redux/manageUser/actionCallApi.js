@@ -1,5 +1,6 @@
 import { hideLoading, showLoading } from "redux/loading/loadingSlice";
 import { manageUserServices } from "services/manageUserServices";
+import Swal from "sweetalert2";
 import { getInfoDetailUser, getListUser, getInfoUserLogin } from "./manageUserSlice";
 
 export const getListUserAction = () => {
@@ -29,6 +30,13 @@ export const memberLoginAction = (infoLogin, navigate) => {
     } catch (err) {
       dispatch(hideLoading());
       console.log("memberLoginAction fail", err);
+      Swal.fire({
+        position: "top-center",
+        icon: "error",
+        title: "Email or password is incorrect!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
   };
 };

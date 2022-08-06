@@ -1,7 +1,31 @@
+@import "_App.scss";
+
 .registerUser {
+  overflow-x: hidden;
   :global {
     .ant-form-item .ant-form-item-label {
       padding: 0;
+    }
+    .ant-form {
+      margin-right: 20%;
+      margin-left: -60%;
+    }
+    .btn-submit {
+      transform: translateX(30%);
+    }
+  }
+}
+
+@include responsive_575 {
+  .registerUser {
+    :global {
+      .ant-form {
+        margin-right: inherit;
+        margin-left: inherit;
+      }
+      .btn-submit {
+        transform: none;
+      }
     }
   }
 }

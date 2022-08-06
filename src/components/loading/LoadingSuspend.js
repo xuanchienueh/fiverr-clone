@@ -1,7 +1,8 @@
-import React from "react";
 import styles from "./loading.module.scss";
+
 export default function LoadingSuspend() {
   const isLoading = true;
+
   return isLoading ? (
     <div className={styles.loading}>
       <div className="spinner">

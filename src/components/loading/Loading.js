@@ -1,8 +1,10 @@
-import React from "react";
 import { useSelector } from "react-redux";
+
 import styles from "./loading.module.scss";
+
 export default function Loading() {
   const { isLoading } = useSelector((state) => state.loadingReducer);
+
   return isLoading ? (
     <div className={styles.loading}>
       <div className="spinner">

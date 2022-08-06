@@ -1,9 +1,8 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Form, Input, Select } from "antd";
 import { useParams } from "react-router-dom";
 import useCallApi from "hooks/useCallApi";
 import { useDispatch, useSelector } from "react-redux";
-import Swal from "sweetalert2";
 
 import { getListTypeMainJobAction } from "redux/manageMainWork/actionCallApi";
 import { manageSubJobService } from "services/manageSubJob";

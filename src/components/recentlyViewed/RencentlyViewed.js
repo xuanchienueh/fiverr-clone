@@ -1,7 +1,7 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import React, { useEffect } from "react";
+
 import CardViewed from "./CardViewed/CardViewed";
 import styles from "./recentlyViewed.module.scss";
 import datas from "./data";

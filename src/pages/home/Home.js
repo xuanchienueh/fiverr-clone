@@ -1,4 +1,3 @@
-import React from "react";
 import CarouselBanner from "components/carouselBanner/CarouselBanner";
 import RencentlyViewed from "components/recentlyViewed/RencentlyViewed";
 

@@ -1,30 +1,26 @@
-import Swal from "sweetalert2";
+import { useEffect, useMemo, useState } from "react";
 import { Form, Menu, Input, Switch, Table } from "antd";
-import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Modal } from "react-bootstrap";
+import Swal from "sweetalert2";
 
 import { getListUserAction } from "redux/manageUser/actionCallApi";
 import { manageUserServices } from "services/manageUserServices";
 import { getListUser } from "redux/manageUser/manageUserSlice";
 import styles from "./tableUser.module.scss";
 import EditUser from "./editUser/EditUser";
+import { alertFail } from "components/alert/alertFail";
 
 const { Search } = Input;
 
 function getItem(label, key, children, type) {
-  return {
-    key,
-    children,
-    label,
-    type,
-  };
+  return { key, children, label, type };
 }
 
 const TableUser = () => {
   const [yScroll, setYScroll] = useState(false);
-  const [xScroll, setXScroll] = useState(false);
+  const xScroll = false;
 
   const handleYScrollChange = (enable) => setYScroll(enable);
 
@@ -177,6 +173,7 @@ function handleDeleteUser(infoUser, dispatch, valueSearch, setData) {
         })
         .catch((err) => {
           console.log("delete user fail", err);
+          alertFail();
         });
     }
   });
