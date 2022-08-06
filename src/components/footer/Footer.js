@@ -1,4 +1,3 @@
-import React from "react";
 import { useEffect, useState } from "react";
 import "./footer.css";
 
@@ -26,7 +25,7 @@ function Footer() {
             </span>
             {widthWindow < 576 ? (
               <button
-                className="navbar-toggle border-0"
+                className="navbar-toggle border-0 w-100 text-left"
                 data-toggle="collapse"
                 data-target="#category"
               >
@@ -113,7 +112,7 @@ function Footer() {
             </span>
             {widthWindow < 576 ? (
               <button
-                className="navbar-toggle border-0 "
+                className="navbar-toggle border-0 w-100 text-left "
                 data-toggle="collapse"
                 data-target="#about"
               >
@@ -176,7 +175,7 @@ function Footer() {
             </span>
             {widthWindow < 576 ? (
               <button
-                className="navbar-toggle border-0 "
+                className="navbar-toggle border-0 w-100 text-left "
                 data-toggle="collapse"
                 data-target="#community"
               >
@@ -251,7 +250,7 @@ function Footer() {
             </span>
             {widthWindow < 576 ? (
               <button
-                className="navbar-toggle border-0 "
+                className="navbar-toggle border-0 w-100 text-left "
                 data-toggle="collapse"
                 data-target="#Support"
               >

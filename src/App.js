@@ -1,5 +1,3 @@
-import LoadingSuspend from "components/loading/LoadingSuspend";
-
 import React, { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
@@ -10,6 +8,7 @@ const HomeTemplate = lazy(() => import("./templates/homeTemplate/HomeTemplate"))
 const ListJobs = lazy(() => import("pages/listJobs/ListJobs"));
 const DetailMainJob = lazy(() => import("pages/detailMainJob/DetailMainJob"));
 const Loading = lazy(() => import("components/loading/Loading"));
+const LoadingSuspend = lazy(() => import("components/loading/LoadingSuspend"));
 const Register = lazy(() => import("pages/register/Register"));
 const Profile = lazy(() => import("pages/profile/Profile"));
 const Login = lazy(() => import("pages/login/Login"));

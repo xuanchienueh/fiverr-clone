@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Modal } from "react-bootstrap";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 
 import { manageUserServices } from "services/manageUserServices";
 import styles from "./profile.module.scss";
@@ -10,7 +10,6 @@ import UpdateInfoUser from "./updateInfoUser/UpdateInfoUser";
 import MoreInfoUser from "./moreInfoUser/MoreInfoUser";
 import { getListServiceUserBoughtAct } from "redux/manageJobs/actionCallApi";
 import { getInfoUserLogin } from "redux/manageUser/manageUserSlice";
-import { Link } from "react-router-dom";
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -49,13 +48,11 @@ export default function Profile() {
 
   return (
     <>
-       <div className="container max-widthContainer">
+      <div className="container max-widthContainer">
         <div className="row">
           <div className="col-lg-4 col-12">
             <div className="card">
               <div className={styles.avatar}>
-               
-
                 <img
                   className="card-img-top mx-auto d-block rounded-circle"
                   src={avatar}
@@ -121,7 +118,9 @@ export default function Profile() {
                 <h5 className="text-muted">
                   It seem that you don't have any active Gigs. Get selling!
                 </h5>
-                <Link to='/createNewGig' className="btn btn-success">Create a New Gig</Link>
+                <Link to="/createNewGig" className="btn btn-success">
+                  Create a New Gig
+                </Link>
               </div>
             </div>
             {listServiceUserBought?.map((service, key) => (

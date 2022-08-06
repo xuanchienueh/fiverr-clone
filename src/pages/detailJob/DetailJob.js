@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { Tabs } from "antd";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { Form, Input } from "antd";
+import { Tabs, Form, Input } from "antd";
 import { useSelector } from "react-redux";
 
 import { manageJobServices } from "services/manageJobServices";
@@ -26,7 +25,7 @@ function DetailJob() {
   const { infoUserLogin } = useSelector((state) => state.manageUserReducer);
   const [loadComment, setLoadComment] = useState(0);
 
-  let comments = useCallApi(manageComment.getCommentService, jobId, loadComment, "reverse");
+  let comments = useCallApi(manageComment.getCommentService, jobId, loadComment, "reverse") || [];
   let jobDetail = useCallApi(manageJobServices.getDetailJobService, jobId) || { _id: "" };
 
   const onFinish = (values) => {
@@ -101,30 +100,34 @@ function DetailJob() {
             Kindly contact me if you would like to employ my services. 👉🏻
           </p>
           <hr />
-          <h4>Comment of user</h4>
+          <h4 className={comments.length > 0 ? "d-block" : "d-none"}>Comment of user</h4>
           <div>
-            <div className="d-flex align-items-center mt-4 mb-2">
-              <img
-                width={40}
-                height={40}
-                src={infoUserLogin.user.avatar}
-                alt="1"
-                className="rounded-circle"
-              />
-              <h5 className="ml-3" style={{ color: "#404145" }}>
-                {infoUserLogin.user.name}
-              </h5>
-            </div>
-            <Form {...layout} form={form} onFinish={onFinish}>
-              <Form.Item name="content" className="mb-2">
-                <Input.TextArea />
-              </Form.Item>
-              <div>
-                <button className="btn btn-success" type="submit">
-                  Enter
-                </button>
-              </div>
-            </Form>
+            {infoUserLogin.user ? (
+              <>
+                <div className="d-flex align-items-center mt-4 mb-2">
+                  <img
+                    width={40}
+                    height={40}
+                    src={infoUserLogin.user.avatar}
+                    alt="1"
+                    className="rounded-circle"
+                  />
+                  <h5 className="ml-3" style={{ color: "#404145" }}>
+                    {infoUserLogin.user.name}
+                  </h5>
+                </div>
+                <Form {...layout} form={form} onFinish={onFinish}>
+                  <Form.Item name="content" className="mb-2">
+                    <Input.TextArea />
+                  </Form.Item>
+                  <div>
+                    <button className="btn btn-success" type="submit">
+                      Enter
+                    </button>
+                  </div>
+                </Form>
+              </>
+            ) : null}
           </div>
           <div>
             {comments?.map((comment) => {

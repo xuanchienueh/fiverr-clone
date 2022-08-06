@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Popconfirm, Space, Table } from "antd";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 import { getListTypeMainJobAction } from "redux/manageMainWork/actionCallApi";
 import { mainWorkService } from "services/mainWorkService";
-import { Link } from "react-router-dom";
 
 let data = [];
 

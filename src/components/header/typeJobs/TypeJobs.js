@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
+
 import styles from "./typeJobs.module.scss";
 import { getListTypeMainJobAction } from "redux/manageMainWork/actionCallApi";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 
 const settings = {
   dots: false,
@@ -74,7 +74,6 @@ function TypeJobs() {
         >
           {job.subTypeJobs.map((subTypeJob) => (
             <Link
-              onClick={() => console.log(subTypeJob)}
               key={subTypeJob._id}
               to={`/listJobs/type-job-id=${subTypeJob.typeJob}`}
               className="list-group-item list-group-item-action h6"

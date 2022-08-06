@@ -1,13 +1,12 @@
-import React, { useState } from "react";
 import { Form, Input, Select, DatePicker } from "antd";
-import Swal from "sweetalert2";
 import moment from "moment";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 import { manageUserServices } from "services/manageUserServices";
 import styles from "./register.module.scss";
 import { useSelector } from "react-redux";
 import { alertSuccess } from "components/alert/alertSuccess";
+import { alertFail } from "components/alert/alertFail";
 
 const { Option } = Select;
 
@@ -18,6 +17,7 @@ const formItemLayout = {
 
 const Register = () => {
   const [form] = Form.useForm();
+  const navigate = useNavigate();
   const { infoUserLogin } = useSelector((state) => state.manageUserReducer);
   if (Object.entries(infoUserLogin).length > 0) {
     return <Navigate to="/" replace={true} />;
@@ -31,9 +31,11 @@ const Register = () => {
     result
       .then((resolve) => {
         alertSuccess();
+        navigate("/login");
       })
       .catch((reject) => {
         console.log(reject);
+        alertFail();
       });
   };
 
@@ -107,7 +109,6 @@ const Register = () => {
         <Form.Item
           name="name"
           label="Name"
-          // tooltip="What do you want others to call you?"
           rules={[
             {
               required: true,
@@ -185,15 +186,15 @@ const Register = () => {
           </Select>
         </Form.Item>
 
-        <div className="d-flex justify-content-center">
-          <button type="submit" className="btn btn-outline-success">
+        <div className="text-center btn-submit ">
+          <button type="submit" className="btn btn-outline-success ">
             Register
           </button>
         </div>
       </Form>
       <div className="text-center my-4">
         Already have an account?{" "}
-        <Link className="h6" to="/login">
+        <Link className="h5" to="/login">
           Log in
         </Link>
       </div>

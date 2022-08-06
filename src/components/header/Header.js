@@ -1,9 +1,8 @@
-import TypeJobs from "./typeJobs/TypeJobs";
-import React, { useEffect, useState } from "react";
 import { Button, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 
+import TypeJobs from "./typeJobs/TypeJobs";
 import styles from "./header.module.scss";
 import SearchHeader from "./searchHeader/SearchHeader";
 import { logoSvg } from "images/imageSvg";
