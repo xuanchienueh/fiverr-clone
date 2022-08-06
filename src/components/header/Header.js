@@ -13,7 +13,6 @@ function Header() {
   if (nameUser?.indexOf(" ") > 0) {
     nameUser = nameUser && nameUser.slice(0, nameUser.indexOf(" "));
   }
-
   return (
     <div className={` ${styles.header}`}>
       <Navbar expand="xl" variant="light">
@@ -35,6 +34,11 @@ function Header() {
 
             {infoUserLogin.token ? (
               <NavDropdown title={`Welcome ${nameUser}`} id="dropdown-account">
+                {infoUserLogin?.user?.role === "ADMIN" && (
+                  <LinkContainer to="/admin/adduser">
+                    <NavDropdown.Item>Admin</NavDropdown.Item>
+                  </LinkContainer>
+                )}
                 <LinkContainer to="/profile">
                   <NavDropdown.Item>Profile</NavDropdown.Item>
                 </LinkContainer>
