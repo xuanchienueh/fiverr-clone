@@ -83,7 +83,6 @@ export default function TableMainJob() {
       ),
     },
   ];
-  console.log(listMainWork);
   data = listMainWork;
   return (
     <div>
