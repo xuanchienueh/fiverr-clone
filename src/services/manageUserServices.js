@@ -9,7 +9,7 @@ class users extends BaseServices {
   createAdminUserService = (infoRegister) => this.post(`users`, infoRegister); /* api 2 */
   getInfoDetailUserService = (userId) => this.get(`users/${userId}`); /* api 3 */
   updateInfoUserService = (userId, infoUpdate) =>
-    this.putTokenAdmin(`users/${userId}`, infoUpdate); /* api 4 */
+    this.put(`users/${userId}`, infoUpdate); /* api 4 */
 
   deleteUserService = (userId) => this.delete(`users/${userId}`); /* api 5 */
   uploadAvatarService = (formData) => this.post(`users/upload-avatar`, formData); /* api 6 */
