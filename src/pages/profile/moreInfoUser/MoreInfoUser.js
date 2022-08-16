@@ -23,7 +23,7 @@ export default function MoreInfoUser({ setshowModal }) {
           </div>
           <div>
             {user?.skill?.map((itemSkill, i) => (
-              <span key={i}>{itemSkill}</span>
+              <span key={i} className='mx-1'>{itemSkill}</span>
             ))}
           </div>
         </div>
@@ -43,7 +43,7 @@ export default function MoreInfoUser({ setshowModal }) {
           </div>
           <div>
             {user?.certification?.map((item, i) => (
-              <span key={i}>{item}</span>
+              <span key={i} className='mx-1'>{item}</span>
             ))}
           </div>
         </div>
