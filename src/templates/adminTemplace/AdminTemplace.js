@@ -1,6 +1,5 @@
-import { PieChartOutlined, DesktopOutlined } from "@ant-design/icons";
-import { Dropdown, Layout, Menu } from "antd";
 import React from "react";
+import { Dropdown, Layout, Menu } from "antd";
 import { Link, Navigate, Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./adminTemplate.css";
@@ -27,8 +26,6 @@ function getItem(label, key, icon, children) {
 }
 
 const items = [
-  getItem("Option 1", "1", <PieChartOutlined />),
-  getItem("Option 2", "2", <DesktopOutlined />),
   getItem("User", "sub1", <></>, [
     getItem(<Link to="/admin/adduser">Add User</Link>, "3"),
     getItem(<Link to="/admin/listuser">List User</Link>, "4"),

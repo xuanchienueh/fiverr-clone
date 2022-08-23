@@ -6,9 +6,11 @@ import TypeJobs from "./typeJobs/TypeJobs";
 import styles from "./header.module.scss";
 import SearchHeader from "./searchHeader/SearchHeader";
 import { logoSvg } from "images/imageSvg";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
   const { infoUserLogin } = useSelector((state) => state.manageUserReducer);
+  const navigate = useNavigate()
   let nameUser = infoUserLogin?.user?.name;
   if (nameUser?.indexOf(" ") > 0) {
     nameUser = nameUser && nameUser.slice(0, nameUser.indexOf(" "));
@@ -54,6 +56,7 @@ function Header() {
                 <NavDropdown.Item
                   onClick={() => {
                     localStorage.clear();
+                    navigate('/')
                     window.location.reload();
                   }}
                 >
