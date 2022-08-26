@@ -36,8 +36,8 @@ const EditMyGig = () => {
 
   const onFinish = (values) => {
     values.deliveryTime = true;
-    values.type = detailGig?.type._id;
-    values.subType = detailGig?.subType._id;
+    values.type = detailGig?.type?._id;
+    values.subType = detailGig?.subType?._id;
 
     if (widthWindow < 500) {
       values = { ...values, ...resultSwitch };
@@ -45,7 +45,7 @@ const EditMyGig = () => {
 
     (async () => {
       try {
-        const result = await manageJobServices.updateJobService(detailGig._id, values);
+        const result = await manageJobServices.updateJobService(detailGig?._id, values);
         alertSuccess();
         navigate("/myGigs");
       } catch (err) {
