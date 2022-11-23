@@ -51,6 +51,15 @@ function TypeJobs() {
   const { listMainWork } = useSelector((state) => state.mainWorkReducer);
   const [showTooltip, setShowTooltip] = useState(false);
 
+  let listMainJobRender = [];
+  listMainWork.forEach((item, i) => {
+    let urlImage =
+      listMainWork[i].subTypeJobs[0] && listMainWork[i].subTypeJobs[0].image;
+    if (urlImage) {
+      listMainJobRender.push(listMainWork[i]);
+    }
+  });
+
   useEffect(() => {
     dispatch(getListTypeMainJobAction());
   }, []);
@@ -90,7 +99,7 @@ function TypeJobs() {
   return (
     <div className={`py-3 border-top d-none d-md-block ${styles.typeJobs}`}>
       <Slider {...settings}>
-        {listMainWork?.map((job) => (
+        {listMainJobRender?.map((job) => (
           <div className="text-center position-relative" key={job._id}>
             <OverlayTrigger
               placement="bottom"
